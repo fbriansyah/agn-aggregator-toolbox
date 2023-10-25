@@ -8,10 +8,12 @@ import (
 )
 
 // routes setting route
-func (adapter *ChiAdapter) routes() http.Handler {
+func (a *ChiAdapter) routes() http.Handler {
 	mux := chi.NewRouter()
 
 	mux.Use(middleware.Heartbeat("/ping"))
+
+	mux.Get("/", a.ListProductIndex)
 
 	return mux
 }

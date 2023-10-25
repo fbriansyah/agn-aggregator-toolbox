@@ -7,6 +7,8 @@ import (
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/port"
 )
 
+type M map[string]any
+
 type ChiAdapter struct {
 	service port.ServicePort
 }
