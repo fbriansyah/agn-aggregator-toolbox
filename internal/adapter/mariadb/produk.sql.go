@@ -9,6 +9,30 @@ import (
 	"context"
 )
 
+const getProductByKode = `-- name: GetProductByKode :one
+SELECT kode_produk, nama_produk, nama_produk_display, nama_struk, nama_struk_singkatan, produk_alias, produk_group, produk_index, produk_date, label_idpel, label_option, status FROM m_produk where KODE_PRODUK = ? LIMIT 1
+`
+
+func (q *Queries) GetProductByKode(ctx context.Context, kodeProduk string) (MProduk, error) {
+	row := q.db.QueryRowContext(ctx, getProductByKode, kodeProduk)
+	var i MProduk
+	err := row.Scan(
+		&i.KodeProduk,
+		&i.NamaProduk,
+		&i.NamaProdukDisplay,
+		&i.NamaStruk,
+		&i.NamaStrukSingkatan,
+		&i.ProdukAlias,
+		&i.ProdukGroup,
+		&i.ProdukIndex,
+		&i.ProdukDate,
+		&i.LabelIdpel,
+		&i.LabelOption,
+		&i.Status,
+	)
+	return i, err
+}
+
 const listProduk = `-- name: ListProduk :many
 SELECT kode_produk, nama_produk, nama_produk_display, nama_struk, nama_struk_singkatan, produk_alias, produk_group, produk_index, produk_date, label_idpel, label_option, status FROM m_produk
 `

@@ -24,3 +24,15 @@ func (s *Service) ListProduct(ctx context.Context) ([]domain.ProductDomain, erro
 
 	return listProduct, nil
 }
+
+func (s *Service) GetProdukByCode(ctx context.Context, kodeProduk string) (domain.ProductDomain, error) {
+	mProduct, err := s.db.GetProductByKode(ctx, kodeProduk)
+	if err != nil {
+		return domain.ProductDomain{}, err
+	}
+
+	produk := domain.ProductDomain{}
+	produk.FromMProduct(mProduct)
+
+	return produk, nil
+}

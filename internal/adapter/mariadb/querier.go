@@ -9,6 +9,7 @@ import (
 )
 
 type Querier interface {
+	GetProductByKode(ctx context.Context, kodeProduk string) (MProduk, error)
 	ListProduk(ctx context.Context) ([]MProduk, error)
 }
 

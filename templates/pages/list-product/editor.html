@@ -1,0 +1,51 @@
+{{ define "content" }}
+
+<div class="mx-auto max-w-7xl mt-4 py-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200">
+  <form method="post">
+    <div class="space-y-12">
+      <div class="border-b border-gray-900/10 pb-12">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Detail Data Produk <b>{{.Produk.NamaProduk}}</b></h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label for="kode-produk" class="block text-sm font-medium leading-6 text-gray-900">Kode Produk</label>
+            <div class="mt-2">
+              <input type="text" name="kode-produk" id="kode-produk" value="{{.Product.KodeProduk}}"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label for="nama-produk" class="block text-sm font-medium leading-6 text-gray-900">Nama Produk</label>
+            <div class="mt-2">
+              <input type="text" name="nama-produk" id="nama-produk" value="{{.Product.NamaProduk}}"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label for="status" class="block text-sm font-medium leading-6 text-gray-900">Status</label>
+            <div class="mt-2">
+              <select id="status" name="status" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option>Pilih salah satu</option>
+                <option value="1" {{if eq .Product.Status 1}} selected {{end}}>Aktif</option>
+                <option value="-1" {{if eq .Product.Status -1}} selected {{end}}>Non Aktif</option>
+              </select>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+      <button type="submit"
+        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+    </div>
+  </form>
+
+</div>
+
+{{ end }}
