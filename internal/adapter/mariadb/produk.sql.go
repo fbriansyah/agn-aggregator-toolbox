@@ -7,7 +7,39 @@ package mariadb
 
 import (
 	"context"
+	"database/sql"
 )
+
+const createProduct = `-- name: CreateProduct :execresult
+INSERT INTO m_produk 
+(KODE_PRODUK, NAMA_PRODUK, NAMA_PRODUK_DISPLAY, nama_struk, nama_struk_singkatan, produk_alias, produk_group, label_idpel, STATUS)
+vALUES
+(?,?,?,?,?,?,?,?,1)
+`
+
+type CreateProductParams struct {
+	KodeProduk         string         `json:"kode_produk"`
+	NamaProduk         sql.NullString `json:"nama_produk"`
+	NamaProdukDisplay  sql.NullString `json:"nama_produk_display"`
+	NamaStruk          sql.NullString `json:"nama_struk"`
+	NamaStrukSingkatan sql.NullString `json:"nama_struk_singkatan"`
+	ProdukAlias        sql.NullString `json:"produk_alias"`
+	ProdukGroup        sql.NullString `json:"produk_group"`
+	LabelIdpel         sql.NullString `json:"label_idpel"`
+}
+
+func (q *Queries) CreateProduct(ctx context.Context, arg CreateProductParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, createProduct,
+		arg.KodeProduk,
+		arg.NamaProduk,
+		arg.NamaProdukDisplay,
+		arg.NamaStruk,
+		arg.NamaStrukSingkatan,
+		arg.ProdukAlias,
+		arg.ProdukGroup,
+		arg.LabelIdpel,
+	)
+}
 
 const getProductByKode = `-- name: GetProductByKode :one
 SELECT kode_produk, nama_produk, nama_produk_display, nama_struk, nama_struk_singkatan, produk_alias, produk_group, produk_index, produk_date, label_idpel, label_option, status FROM m_produk where KODE_PRODUK = ? LIMIT 1
@@ -34,7 +66,7 @@ func (q *Queries) GetProductByKode(ctx context.Context, kodeProduk string) (MPro
 }
 
 const listProduk = `-- name: ListProduk :many
-SELECT kode_produk, nama_produk, nama_produk_display, nama_struk, nama_struk_singkatan, produk_alias, produk_group, produk_index, produk_date, label_idpel, label_option, status FROM m_produk
+SELECT kode_produk, nama_produk, nama_produk_display, nama_struk, nama_struk_singkatan, produk_alias, produk_group, produk_index, produk_date, label_idpel, label_option, status FROM m_produk ORDER BY NAMA_PRODUK
 `
 
 func (q *Queries) ListProduk(ctx context.Context) ([]MProduk, error) {

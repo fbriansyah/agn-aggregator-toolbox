@@ -6,9 +6,11 @@ package mariadb
 
 import (
 	"context"
+	"database/sql"
 )
 
 type Querier interface {
+	CreateProduct(ctx context.Context, arg CreateProductParams) (sql.Result, error)
 	GetProductByKode(ctx context.Context, kodeProduk string) (MProduk, error)
 	ListProduk(ctx context.Context) ([]MProduk, error)
 }

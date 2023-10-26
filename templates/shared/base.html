@@ -20,8 +20,13 @@
 
     <div class="py-10">
       <header>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">{{.PageTitle}}</h1>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center">
+          <h1 class="inline-block text-3xl font-bold leading-tight tracking-tight text-gray-900">{{.PageTitle}}</h1>
+          {{ if ne .AddButtonUrl "" }}
+          <a href="{{.AddButtonUrl}}" class="ml-auto rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            Tambah Data
+          </a>
+          {{end}}
         </div>
       </header>
       <main>

@@ -25,8 +25,9 @@ func (a *ChiAdapter) ListProductIndex(w http.ResponseWriter, req *http.Request) 
 	}
 
 	err = tmplFile.ExecuteTemplate(w, "base", M{
-		"PageTitle": "Product",
-		"Products":  products,
+		"PageTitle":    "Product",
+		"AddButtonUrl": "/add-product",
+		"Products":     products,
 	})
 
 	if err != nil {
@@ -59,8 +60,36 @@ func (a *ChiAdapter) DetailProductIndex(w http.ResponseWriter, req *http.Request
 	}
 
 	err = tmplFile.ExecuteTemplate(w, "base", M{
-		"PageTitle": "Detail Product",
-		"Product":   product,
+		"PageTitle":    "Detail Product",
+		"AddButtonUrl": "",
+		"Product":      product,
+	})
+
+	if err != nil {
+		log.Fatalf("error execute template: %v", err)
+	}
+}
+
+func (a *ChiAdapter) AddProdukPage(w http.ResponseWriter, req *http.Request) {
+
+	tmplFile, err := template.New("").ParseFiles(
+		"templates/pages/list-product/create-form.html",
+		"templates/shared/nav.html",
+		"templates/shared/base.html",
+	)
+	if err != nil {
+		log.Fatalf("error parse template: %v", err)
+	}
+
+	products, err := a.service.ListProduct(context.Background())
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = tmplFile.ExecuteTemplate(w, "base", M{
+		"PageTitle":    "Product",
+		"AddButtonUrl": "",
+		"Products":     products,
 	})
 
 	if err != nil {
