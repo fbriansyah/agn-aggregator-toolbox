@@ -59,10 +59,16 @@ func (a *ChiAdapter) DetailProductIndex(w http.ResponseWriter, req *http.Request
 		fmt.Println(err)
 	}
 
+	providers, err := a.service.GetProductProvider(context.Background(), kodeProduk)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	err = tmplFile.ExecuteTemplate(w, "base", M{
 		"PageTitle":    "Detail Product",
 		"AddButtonUrl": "",
 		"Product":      product,
+		"Providers":    providers,
 	})
 
 	if err != nil {
