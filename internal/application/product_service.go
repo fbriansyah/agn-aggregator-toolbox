@@ -67,3 +67,20 @@ func (s *Service) CreateProduct(ctx context.Context, produk domain.ProductDomain
 
 	return produk, nil
 }
+
+func (s *Service) GetProductProvider(ctx context.Context, kodeProduk string) ([]domain.ProdukProviderDomain, error) {
+	providers, err := s.db.ListProviderProduk(ctx, util.ValidNullString(kodeProduk))
+	if err != nil {
+		return []domain.ProdukProviderDomain{}, err
+	}
+	listProvider := []domain.ProdukProviderDomain{}
+
+	for _, provider := range providers {
+		prov := domain.ProdukProviderDomain{}
+		prov.FromMProviderProduk(provider)
+
+		listProvider = append(listProvider, prov)
+	}
+
+	return listProvider, nil
+}
