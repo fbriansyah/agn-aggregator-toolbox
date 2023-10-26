@@ -84,3 +84,30 @@ func (s *Service) GetProductProvider(ctx context.Context, kodeProduk string) ([]
 
 	return listProvider, nil
 }
+
+func (s *Service) GetProducts(ctx context.Context, produk domain.ProductDomain) ([]domain.ProductDomain, error) {
+	where := "1=1"
+	var qw util.QueryWhere
+	if produk.KodeProduk != "" {
+		qw.Equal("KODE_PRODUK", produk.KodeProduk)
+	}
+	if produk.NamaProduk != "" {
+		qw.Like("NAMA_PRODUK", produk.NamaProduk)
+	}
+	if !qw.IsEmpty() {
+		where = qw.Build()
+	}
+	listProduct, err := s.db.GetProducts(ctx, where)
+	if err != nil {
+		return []domain.ProductDomain{}, nil
+	}
+
+	var products []domain.ProductDomain
+	for _, prod := range listProduct {
+		var product domain.ProductDomain
+		product.FromMProduct(prod)
+		products = append(products, product)
+	}
+
+	return products, nil
+}

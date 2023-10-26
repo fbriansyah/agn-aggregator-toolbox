@@ -12,4 +12,5 @@ type ServicePort interface {
 	GetProdukByCode(ctx context.Context, kodeProduk string) (domain.ProductDomain, error)
 	CreateProduct(ctx context.Context, produk domain.ProductDomain) (domain.ProductDomain, error)
 	GetProductProvider(ctx context.Context, kodeProduk string) ([]domain.ProdukProviderDomain, error)
+	GetProducts(ctx context.Context, produk domain.ProductDomain) ([]domain.ProductDomain, error)
 }

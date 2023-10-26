@@ -1,11 +1,13 @@
 package mariadb
 
 import (
+	"context"
 	"database/sql"
 )
 
 type DatabaseAdapter interface {
 	Querier
+	GetProducts(ctx context.Context, whereQuery string) ([]MProduk, error)
 }
 
 type DatabaseStore struct {

@@ -6,10 +6,11 @@ import (
 	"log"
 	"net/http"
 	"text/template"
+
+	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application/domain"
 )
 
 func (a *ChiAdapter) ListProductPage(w http.ResponseWriter, req *http.Request) {
-
 	tmplFile, err := template.New("").ParseFiles(
 		"templates/pages/list-product/index.html",
 		"templates/shared/nav.html",
@@ -36,13 +37,11 @@ func (a *ChiAdapter) ListProductPage(w http.ResponseWriter, req *http.Request) {
 }
 
 func (a *ChiAdapter) DetailProductPage(w http.ResponseWriter, req *http.Request) {
-
 	tmplFile, err := template.New("").ParseFiles(
 		"templates/pages/list-product/editor.html",
 		"templates/shared/nav.html",
 		"templates/shared/base.html",
 	)
-
 	if err != nil {
 		log.Fatalf("error parse template: %v", err)
 	}
@@ -77,7 +76,6 @@ func (a *ChiAdapter) DetailProductPage(w http.ResponseWriter, req *http.Request)
 }
 
 func (a *ChiAdapter) AddProdukPage(w http.ResponseWriter, req *http.Request) {
-
 	tmplFile, err := template.New("").ParseFiles(
 		"templates/pages/list-product/create-form.html",
 		"templates/shared/nav.html",
@@ -98,6 +96,33 @@ func (a *ChiAdapter) AddProdukPage(w http.ResponseWriter, req *http.Request) {
 		"Products":     products,
 	})
 
+	if err != nil {
+		log.Fatalf("error execute template: %v", err)
+	}
+}
+
+func (a *ChiAdapter) GetProducts(w http.ResponseWriter, req *http.Request) {
+	kodeProduk := req.URL.Query().Get("kode-produk")
+	namaProduk := req.URL.Query().Get("nama-produk")
+
+	products, err := a.service.GetProducts(context.Background(), domain.ProductDomain{
+		KodeProduk: kodeProduk,
+		NamaProduk: namaProduk,
+	})
+	if err != nil {
+		fmt.Println(err)
+	}
+	tmplFile, err := template.New("").ParseFiles(
+		"templates/pages/list-product/index.html",
+		"templates/shared/nav.html",
+		"templates/shared/base.html",
+	)
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = tmplFile.ExecuteTemplate(w, "list-product", M{
+		"Products": products,
+	})
 	if err != nil {
 		log.Fatalf("error execute template: %v", err)
 	}
