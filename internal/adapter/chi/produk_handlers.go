@@ -8,7 +8,7 @@ import (
 	"text/template"
 )
 
-func (a *ChiAdapter) ListProductIndex(w http.ResponseWriter, req *http.Request) {
+func (a *ChiAdapter) ListProductPage(w http.ResponseWriter, req *http.Request) {
 
 	tmplFile, err := template.New("").ParseFiles(
 		"templates/pages/list-product/index.html",
@@ -35,7 +35,7 @@ func (a *ChiAdapter) ListProductIndex(w http.ResponseWriter, req *http.Request) 
 	}
 }
 
-func (a *ChiAdapter) DetailProductIndex(w http.ResponseWriter, req *http.Request) {
+func (a *ChiAdapter) DetailProductPage(w http.ResponseWriter, req *http.Request) {
 
 	tmplFile, err := template.New("").ParseFiles(
 		"templates/pages/list-product/editor.html",

@@ -13,8 +13,8 @@ func (a *ChiAdapter) routes() http.Handler {
 
 	mux.Use(middleware.Heartbeat("/ping"))
 
-	mux.Get("/", a.ListProductIndex)
-	mux.Get("/detail-product", a.DetailProductIndex)
+	mux.Get("/", a.ListProductPage)
+	mux.Get("/detail-product", a.DetailProductPage)
 	mux.Get("/add-product", a.AddProdukPage)
 
 	return mux
