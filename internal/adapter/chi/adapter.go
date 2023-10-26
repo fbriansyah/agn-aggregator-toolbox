@@ -10,17 +10,18 @@ import (
 type M map[string]any
 
 type ChiAdapter struct {
-	service port.ServicePort
+	service  port.ServicePort
+	template port.TemplatePort
 }
 
 type ChiAdapterConfig struct {
 	ServerAddress string
 }
 
-func NewChiAdapter(service port.ServicePort) *ChiAdapter {
-
+func NewChiAdapter(service port.ServicePort, template port.TemplatePort) *ChiAdapter {
 	return &ChiAdapter{
-		service: service,
+		service:  service,
+		template: template,
 	}
 }
 

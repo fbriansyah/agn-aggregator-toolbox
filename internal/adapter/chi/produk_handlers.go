@@ -5,17 +5,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"text/template"
 
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application/domain"
 )
 
 func (a *ChiAdapter) ListProductPage(w http.ResponseWriter, req *http.Request) {
-	tmplFile, err := template.New("").ParseFiles(
-		"templates/pages/list-product/index.html",
-		"templates/shared/nav.html",
-		"templates/shared/base.html",
-	)
+	tmplFile, err := a.template.ProductIndex()
 	if err != nil {
 		log.Fatalf("error parse template: %v", err)
 	}
@@ -37,11 +32,7 @@ func (a *ChiAdapter) ListProductPage(w http.ResponseWriter, req *http.Request) {
 }
 
 func (a *ChiAdapter) DetailProductPage(w http.ResponseWriter, req *http.Request) {
-	tmplFile, err := template.New("").ParseFiles(
-		"templates/pages/list-product/editor.html",
-		"templates/shared/nav.html",
-		"templates/shared/base.html",
-	)
+	tmplFile, err := a.template.DetailProduct()
 	if err != nil {
 		log.Fatalf("error parse template: %v", err)
 	}
@@ -76,11 +67,7 @@ func (a *ChiAdapter) DetailProductPage(w http.ResponseWriter, req *http.Request)
 }
 
 func (a *ChiAdapter) AddProdukPage(w http.ResponseWriter, req *http.Request) {
-	tmplFile, err := template.New("").ParseFiles(
-		"templates/pages/list-product/create-form.html",
-		"templates/shared/nav.html",
-		"templates/shared/base.html",
-	)
+	tmplFile, err := a.template.CreateProduct()
 	if err != nil {
 		log.Fatalf("error parse template: %v", err)
 	}
@@ -112,11 +99,7 @@ func (a *ChiAdapter) GetProducts(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	tmplFile, err := template.New("").ParseFiles(
-		"templates/pages/list-product/index.html",
-		"templates/shared/nav.html",
-		"templates/shared/base.html",
-	)
+	tmplFile, err := a.template.ProductIndex()
 	if err != nil {
 		fmt.Println(err)
 	}
