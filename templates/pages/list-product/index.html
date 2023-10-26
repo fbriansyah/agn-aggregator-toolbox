@@ -9,11 +9,8 @@
         <h2 class="text-base font-semibold leading-7 text-gray-900">
           Form Filter
         </h2>
-        <p class="mt-1 text-sm leading-6 text-gray-600">
-          Use a permanent address where you can receive mail.
-        </p>
 
-        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
             <label
               for="kode-produk"
@@ -61,6 +58,7 @@
 </div>
 
 <div
+  style="height: 500px; overflow-y: scroll"
   class="mx-auto max-w-7xl mt-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200"
 >
   {{block "list-product" .}}
