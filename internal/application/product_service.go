@@ -39,7 +39,7 @@ func (s *Service) GetProdukByCode(ctx context.Context, kodeProduk string) (domai
 	return produk, nil
 }
 
-func (s *Service) CreatProduct(ctx context.Context, produk domain.ProductDomain) (domain.ProductDomain, error) {
+func (s *Service) CreateProduct(ctx context.Context, produk domain.ProductDomain) (domain.ProductDomain, error) {
 	arg := mariadb.CreateProductParams{
 		KodeProduk:         produk.KodeProduk,
 		NamaProduk:         util.ValidNullString(produk.NamaProduk),
