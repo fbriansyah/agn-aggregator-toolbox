@@ -18,6 +18,8 @@ func (a *ChiAdapter) ListProductPage(w http.ResponseWriter, req *http.Request) {
 	products, err := a.service.ListProduct(context.Background())
 	if err != nil {
 		fmt.Println(err)
+		fmt.Fprint(w, "<span>"+err.Error()+"</span>")
+		return
 	}
 
 	err = tmplFile.ExecuteTemplate(w, "base", M{

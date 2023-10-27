@@ -53,7 +53,7 @@ func (s *Service) CreateProduct(ctx context.Context, produk domain.ProductDomain
 
 	result, err := s.db.CreateProduct(ctx, arg)
 	if err != nil {
-		return domain.ProductDomain{}, nil
+		return domain.ProductDomain{}, err
 	}
 
 	lastId, err := result.RowsAffected()
@@ -99,7 +99,7 @@ func (s *Service) GetProducts(ctx context.Context, produk domain.ProductDomain) 
 	}
 	listProduct, err := s.db.GetProducts(ctx, where)
 	if err != nil {
-		return []domain.ProductDomain{}, nil
+		return []domain.ProductDomain{}, err
 	}
 
 	var products []domain.ProductDomain
