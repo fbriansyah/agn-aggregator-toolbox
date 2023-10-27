@@ -2,6 +2,7 @@ package template
 
 import "text/template"
 
+// ProductIndex return template from list-product/index.html
 func (t *TemplateAdapter) ProductIndex() (*template.Template, error) {
 	return template.New("").ParseFiles(
 		"templates/pages/list-product/index.html",
@@ -10,6 +11,7 @@ func (t *TemplateAdapter) ProductIndex() (*template.Template, error) {
 	)
 }
 
+// DetailProduct return template from list-product/editor.html
 func (t *TemplateAdapter) DetailProduct() (*template.Template, error) {
 	return template.New("").ParseFiles(
 		"templates/pages/list-product/editor.html",
@@ -18,6 +20,7 @@ func (t *TemplateAdapter) DetailProduct() (*template.Template, error) {
 	)
 }
 
+// CreateProduct return template from list-product/create-form.html
 func (t *TemplateAdapter) CreateProduct() (*template.Template, error) {
 	return template.New("").ParseFiles(
 		"templates/pages/list-product/create-form.html",
