@@ -9,4 +9,7 @@ type TemplatePort interface {
 	DetailProduct() (*template.Template, error)
 	// CreateProduct return template from list-product/create-form.html
 	CreateProduct() (*template.Template, error)
+	// ProductProviderIndex get html template for provider index page
+	ProductProviderIndex() (*template.Template, error)
+	GetProviderForm() (*template.Template, error)
 }

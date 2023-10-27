@@ -17,6 +17,8 @@ func (a *ChiAdapter) routes() http.Handler {
 	mux.Get("/detail-product", a.DetailProductPage)
 	mux.Get("/add-product", a.AddProdukPage)
 	mux.Get("/get-products", a.GetProducts)
+	mux.Get("/provider", a.ProdukProviderIndex)
+	mux.Get("/provider/editor", a.GetProviderEditor)
 
 	return mux
 }

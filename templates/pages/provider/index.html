@@ -1,0 +1,24 @@
+{{define "content"}}
+<div id="detail-provider" class="overflow-hidden bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-6 sm:px-6">
+    <div class="w-full flex">
+      <h3 class="text-base font-semibold leading-7 text-gray-900">
+        Detail produk provider
+      </h3>
+      <button
+        class="ml-auto"
+        type="button"
+        hx-get="/provider/editor"
+        hx-target="#detail-provider"
+        hx-swap="outerHTML transition:true"
+      >
+        Edit
+      </button>
+    </div>
+    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+      Data detail provider product
+    </p>
+  </div>
+  {{template "detail" .}}
+</div>
+{{end}}
