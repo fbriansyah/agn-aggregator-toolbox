@@ -57,10 +57,9 @@ func (a *ChiAdapter) DetailProductPage(w http.ResponseWriter, req *http.Request)
 	}
 
 	err = tmplFile.ExecuteTemplate(w, "base", M{
-		"PageTitle":    "Detail Product",
-		"AddButtonUrl": "",
-		"Product":      product,
-		"Providers":    providers,
+		"PageTitle": "Detail Product",
+		"Product":   product,
+		"Providers": providers,
 	})
 
 	if err != nil {
@@ -80,9 +79,8 @@ func (a *ChiAdapter) AddProdukPage(w http.ResponseWriter, req *http.Request) {
 	}
 
 	err = tmplFile.ExecuteTemplate(w, "base", M{
-		"PageTitle":    "Product",
-		"AddButtonUrl": "",
-		"Products":     products,
+		"PageTitle": "Product",
+		"Products":  products,
 	})
 
 	if err != nil {
