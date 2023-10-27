@@ -13,5 +13,5 @@ func (t *TemplateAdapter) ProductProviderIndex() (*template.Template, error) {
 }
 
 func (t *TemplateAdapter) GetProviderForm() (*template.Template, error) {
-	return template.New("").ParseFiles("templates/pages/provider/editor.html")
+	return template.New("").ParseFiles("templates/pages/provider/edit-form.html")
 }
