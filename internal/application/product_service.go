@@ -27,6 +27,7 @@ func (s *Service) ListProduct(ctx context.Context) ([]domain.ProductDomain, erro
 	return listProduct, nil
 }
 
+// GetProdukByCode get detail product based on kode produk
 func (s *Service) GetProdukByCode(ctx context.Context, kodeProduk string) (domain.ProductDomain, error) {
 	mProduct, err := s.db.GetProductByKode(ctx, kodeProduk)
 	if err != nil {
@@ -39,6 +40,7 @@ func (s *Service) GetProdukByCode(ctx context.Context, kodeProduk string) (domai
 	return produk, nil
 }
 
+// CreateProduct insert new produk to database
 func (s *Service) CreateProduct(ctx context.Context, produk domain.ProductDomain) (domain.ProductDomain, error) {
 	arg := mariadb.CreateProductParams{
 		KodeProduk:         produk.KodeProduk,
@@ -68,6 +70,7 @@ func (s *Service) CreateProduct(ctx context.Context, produk domain.ProductDomain
 	return produk, nil
 }
 
+// GetProductProvider get produk providers base on kode produk
 func (s *Service) GetProductProvider(ctx context.Context, kodeProduk string) ([]domain.ProdukProviderDomain, error) {
 	providers, err := s.db.ListProviderProduk(ctx, util.ValidNullString(kodeProduk))
 	if err != nil {
@@ -85,6 +88,7 @@ func (s *Service) GetProductProvider(ctx context.Context, kodeProduk string) ([]
 	return listProvider, nil
 }
 
+// GetProducts get list product based on kode produk and or nama produk
 func (s *Service) GetProducts(ctx context.Context, produk domain.ProductDomain) ([]domain.ProductDomain, error) {
 	where := "1=1"
 	var qw util.QueryWhere
