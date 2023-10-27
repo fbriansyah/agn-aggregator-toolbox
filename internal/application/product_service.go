@@ -63,6 +63,7 @@ func (s *Service) CreateProduct(ctx context.Context, produk domain.ProductDomain
 		return domain.ProductDomain{}, err
 	}
 
+	// if success insert lastId will greater than 0
 	if lastId < int64(0) {
 		return domain.ProductDomain{}, errors.New("error creating product")
 	}
