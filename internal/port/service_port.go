@@ -17,4 +17,6 @@ type ServicePort interface {
 	GetProductProvider(ctx context.Context, kodeProduk string) ([]domain.ProdukProviderDomain, error)
 	// GetProducts get list product based on kode produk and or nama produk
 	GetProducts(ctx context.Context, produk domain.ProductDomain) ([]domain.ProductDomain, error)
+	// GetProviderDetail get detail from provider by its id
+	GetProviderDetail(ctx context.Context, idproduk int32) (domain.ProdukProviderDomain, error)
 }

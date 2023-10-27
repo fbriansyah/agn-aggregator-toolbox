@@ -10,6 +10,52 @@ import (
 	"database/sql"
 )
 
+const getProviderByID = `-- name: GetProviderByID :one
+SELECT idproduk, kode_produk, kode_produk_provider, nama_produk, kategori, provider, rctype, provider_bank, fee_produk, mode_sto, mode_repeat, class_rpc, class_name, class_tipe, class_ip, class_port, class_path, class_setting, class_timeout, tipemodel, screenname, status, fee_app_1, fee_ca_1, fee_biller_1, fee_app_2, fee_ca_2, fee_biller_2, fee_app_3, fee_ca_3, fee_biller_3, fee_app_4, fee_ca_4, fee_biller_4 FROM m_produk_provider WHERE idproduk = ? LIMIT 1
+`
+
+func (q *Queries) GetProviderByID(ctx context.Context, idproduk int32) (MProdukProvider, error) {
+	row := q.db.QueryRowContext(ctx, getProviderByID, idproduk)
+	var i MProdukProvider
+	err := row.Scan(
+		&i.Idproduk,
+		&i.KodeProduk,
+		&i.KodeProdukProvider,
+		&i.NamaProduk,
+		&i.Kategori,
+		&i.Provider,
+		&i.Rctype,
+		&i.ProviderBank,
+		&i.FeeProduk,
+		&i.ModeSto,
+		&i.ModeRepeat,
+		&i.ClassRpc,
+		&i.ClassName,
+		&i.ClassTipe,
+		&i.ClassIp,
+		&i.ClassPort,
+		&i.ClassPath,
+		&i.ClassSetting,
+		&i.ClassTimeout,
+		&i.Tipemodel,
+		&i.Screenname,
+		&i.Status,
+		&i.FeeApp1,
+		&i.FeeCa1,
+		&i.FeeBiller1,
+		&i.FeeApp2,
+		&i.FeeCa2,
+		&i.FeeBiller2,
+		&i.FeeApp3,
+		&i.FeeCa3,
+		&i.FeeBiller3,
+		&i.FeeApp4,
+		&i.FeeCa4,
+		&i.FeeBiller4,
+	)
+	return i, err
+}
+
 const listProviderProduk = `-- name: ListProviderProduk :many
 SELECT idproduk, kode_produk, kode_produk_provider, nama_produk, kategori, provider, rctype, provider_bank, fee_produk, mode_sto, mode_repeat, class_rpc, class_name, class_tipe, class_ip, class_port, class_path, class_setting, class_timeout, tipemodel, screenname, status, fee_app_1, fee_ca_1, fee_biller_1, fee_app_2, fee_ca_2, fee_biller_2, fee_app_3, fee_ca_3, fee_biller_3, fee_app_4, fee_ca_4, fee_biller_4 FROM m_produk_provider where kode_produk=?
 `
