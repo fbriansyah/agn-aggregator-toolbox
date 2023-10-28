@@ -15,3 +15,11 @@ func (t *TemplateAdapter) ProductProviderIndex() (*template.Template, error) {
 func (t *TemplateAdapter) GetProviderEditForm() (*template.Template, error) {
 	return template.New("").ParseFiles("templates/pages/provider/edit-form.html")
 }
+
+func (t *TemplateAdapter) GetProviderCreateForm() (*template.Template, error) {
+	return template.New("").ParseFiles("templates/pages/provider/create-form.html")
+}
+
+func (t *TemplateAdapter) GetListProvider() (*template.Template, error) {
+	return template.New("").ParseFiles("templates/pages/provider/list-provider.html")
+}

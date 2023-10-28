@@ -66,3 +66,52 @@ func (a *ChiAdapter) GetProviderEditor(w http.ResponseWriter, req *http.Request)
 		fmt.Println(err)
 	}
 }
+
+func (a *ChiAdapter) GetProviderCreateForm(w http.ResponseWriter, req *http.Request) {
+	kodeProduk := req.URL.Query().Get("kode_product")
+	tmpl, err := a.template.GetProviderCreateForm()
+	if err != nil {
+		fmt.Println(err)
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	product, err := a.service.GetProdukByCode(ctx, kodeProduk)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = tmpl.ExecuteTemplate(w, "content", M{
+		"KodeProduk": kodeProduk,
+		"Product":    product,
+	})
+
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
+func (a *ChiAdapter) GetListProvider(w http.ResponseWriter, req *http.Request) {
+	kodeProduk := req.URL.Query().Get("kode_product")
+	tmpl, err := a.template.GetListProvider()
+	if err != nil {
+		fmt.Println(err)
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	providers, err := a.service.GetProductProvider(ctx, kodeProduk)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = tmpl.ExecuteTemplate(w, "list-provider", M{
+		"Providers": providers,
+		"Product": M{
+			"KodeProduk": kodeProduk,
+		},
+	})
+	if err != nil {
+		fmt.Println(err)
+	}
+}

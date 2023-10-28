@@ -15,6 +15,7 @@ func (t *TemplateAdapter) ProductIndex() (*template.Template, error) {
 func (t *TemplateAdapter) DetailProduct() (*template.Template, error) {
 	return template.New("").ParseFiles(
 		"templates/pages/list-product/editor.html",
+		"templates/pages/provider/list-provider.html",
 		"templates/shared/nav.html",
 		"templates/shared/base.html",
 	)

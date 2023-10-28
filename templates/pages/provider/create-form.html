@@ -1,6 +1,6 @@
-{{define "editor"}}
+{{define "content"}}
 <div
-  id="edit-form"
+  id="create-form"
   class="mx-auto max-w-7xl mt-4 py-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200"
 >
   <form
@@ -29,6 +29,7 @@
                 type="text"
                 name="kode_produk"
                 id="kode_produk"
+                value="{{.KodeProduk}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -45,6 +46,7 @@
                 type="text"
                 name="kode_produk_provider"
                 id="kode_produk_provider"
+                value="{{.KodeProduk}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -61,6 +63,7 @@
                 type="text"
                 name="nama_produk"
                 id="nama_produk"
+                value="{{.Product.NamaProduk}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -77,7 +80,7 @@
                 type="text"
                 name="kategori"
                 id="kategori"
-                value=""
+                value="P"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -94,7 +97,7 @@
                 type="text"
                 name="provider"
                 id="provider"
-                value=""
+                value="BANK_KALSEL"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -127,7 +130,7 @@
                 type="text"
                 name="provider_bank"
                 id="provider_bank"
-                value=""
+                value="BANK KALSEL"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -143,7 +146,7 @@
                 type="number"
                 name="fee_produk"
                 id="fee_produk"
-                value=""
+                value="0"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -159,7 +162,7 @@
                 type="text"
                 name="class_rpc"
                 id="class_rpc"
-                value=""
+                value="multiple"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -191,7 +194,7 @@
                 type="text"
                 name="class_tipe"
                 id="class_tipe"
-                value=""
+                value="http"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -230,22 +233,6 @@
           </div>
           <div class="sm:col-span-3">
             <label
-              for="class_port"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Class Port</label
-            >
-            <div class="mt-2">
-              <input
-                type="text"
-                name="class_port"
-                id="class_port"
-                value=""
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div class="sm:col-span-3">
-            <label
               for="class_path"
               class="block text-sm font-medium leading-6 text-gray-900"
               >Class Path</label
@@ -260,20 +247,19 @@
               />
             </div>
           </div>
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-6">
             <label
               for="class_setting"
               class="block text-sm font-medium leading-6 text-gray-900"
               >Class Setting</label
             >
             <div class="mt-2">
-              <input
-                type="text"
+              <textarea
+                rows="4"
                 name="class_setting"
                 id="class_setting"
-                value=""
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+              ></textarea>
             </div>
           </div>
           <div class="sm:col-span-3">
@@ -308,33 +294,20 @@
               />
             </div>
           </div>
-          <div class="sm:col-span-3">
-            <label
-              for="class-rpc"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Status</label
-            >
-            <div class="mt-2">
-              <input
-                type="text"
-                name="class-rpc"
-                id="class-rpc"
-                value=""
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <a
-        href="/provider?id={{.Provider.Idproduk}}"
+      <button
+        hx-get="/provider/list-provider?kode_product={{.KodeProduk}}"
+        hx-target="#create-form"
+        hx-swap="outerHTML transition:true"
         class="text-sm font-semibold leading-6 text-gray-900"
+        type="button"
       >
         Cancel
-      </a>
+      </button>
       <button
         type="submit"
         class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
