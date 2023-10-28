@@ -41,7 +41,7 @@ func (a *ChiAdapter) ProdukProviderIndex(w http.ResponseWriter, req *http.Reques
 
 func (a *ChiAdapter) GetProviderEditor(w http.ResponseWriter, req *http.Request) {
 	idProvider := req.URL.Query().Get("id")
-	tmplFile, err := a.template.GetProviderForm()
+	tmplFile, err := a.template.GetProviderEditForm()
 	if err != nil {
 		fmt.Println(err)
 	}

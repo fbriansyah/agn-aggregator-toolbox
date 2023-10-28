@@ -29,6 +29,7 @@
                 type="text"
                 name="kode_produk"
                 id="kode_produk"
+                value="{{.Provider.KodeProduk}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -45,6 +46,7 @@
                 type="text"
                 name="kode_produk_provider"
                 id="kode_produk_provider"
+                value="{{.Provider.KodeProdukProvider}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -61,6 +63,7 @@
                 type="text"
                 name="nama_produk"
                 id="nama_produk"
+                value="{{.Provider.NamaProduk}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -77,7 +80,7 @@
                 type="text"
                 name="kategori"
                 id="kategori"
-                value=""
+                value="{{.Provider.Kategori}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -94,7 +97,7 @@
                 type="text"
                 name="provider"
                 id="provider"
-                value=""
+                value="{{.Provider.Provider}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -111,7 +114,7 @@
                 type="text"
                 name="rctype"
                 id="rctype"
-                value=""
+                value="{{.Provider.Rctype}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -127,7 +130,7 @@
                 type="text"
                 name="provider_bank"
                 id="provider_bank"
-                value=""
+                value="{{.Provider.ProviderBank}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -143,7 +146,7 @@
                 type="number"
                 name="fee_produk"
                 id="fee_produk"
-                value=""
+                value="{{.Provider.FeeProduk}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -159,7 +162,7 @@
                 type="text"
                 name="class_rpc"
                 id="class_rpc"
-                value=""
+                value="{{.Provider.ClassRpc}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -175,7 +178,7 @@
                 type="text"
                 name="class_name"
                 id="class_name"
-                value=""
+                value="{{.Provider.ClassName}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -191,7 +194,7 @@
                 type="text"
                 name="class_tipe"
                 id="class_tipe"
-                value=""
+                value="{{.Provider.ClassTipe}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -207,7 +210,7 @@
                 type="text"
                 name="class_ip"
                 id="class_ip"
-                value=""
+                value="{{.Provider.ClassIp}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -223,23 +226,7 @@
                 type="text"
                 name="class_port"
                 id="class_port"
-                value=""
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div class="sm:col-span-3">
-            <label
-              for="class_port"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Class Port</label
-            >
-            <div class="mt-2">
-              <input
-                type="text"
-                name="class_port"
-                id="class_port"
-                value=""
+                value="{{.Provider.ClassPort}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -248,32 +235,34 @@
             <label
               for="class_path"
               class="block text-sm font-medium leading-6 text-gray-900"
-              >Class Path</label
+              >Class Port</label
             >
             <div class="mt-2">
               <input
                 type="text"
                 name="class_path"
                 id="class_path"
-                value=""
+                value="{{.Provider.ClassPath}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-6">
             <label
               for="class_setting"
               class="block text-sm font-medium leading-6 text-gray-900"
               >Class Setting</label
             >
             <div class="mt-2">
-              <input
+              <textarea
                 type="text"
                 name="class_setting"
                 id="class_setting"
-                value=""
+                row="4"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+              >
+{{.Provider.ClassSetting}}
+              </textarea>
             </div>
           </div>
           <div class="sm:col-span-3">
@@ -287,7 +276,7 @@
                 type="text"
                 name="class_timeout"
                 id="class_timeout"
-                value=""
+                value="{{.Provider.ClassTimeout}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -303,25 +292,39 @@
                 type="text"
                 name="screenname"
                 id="screenname"
-                value=""
+                value="{{.Provider.Screenname}}"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
           <div class="sm:col-span-3">
             <label
-              for="class-rpc"
+              for="status"
               class="block text-sm font-medium leading-6 text-gray-900"
               >Status</label
             >
             <div class="mt-2">
-              <input
-                type="text"
-                name="class-rpc"
-                id="class-rpc"
-                value=""
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+              <select
+                id="status"
+                name="status"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              >
+                <option>Pilih salah satu</option>
+                <option value="1" {{if eq .Provider.Status 1}} selected {{end}}>
+                  Aktif
+                </option>
+                <option
+                  value="-1"
+                  {{if
+                  eq
+                  .Provider.Status
+                  -1}}
+                  selected
+                  {{end}}
+                >
+                  Non Aktif
+                </option>
+              </select>
             </div>
           </div>
         </div>
