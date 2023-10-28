@@ -1,6 +1,7 @@
 {{define "content"}}
 
 <div
+  id="product-container"
   class="mx-auto max-w-7xl mt-4 py-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200"
 >
   <form hx-get="/get-products" hx-target="#list-product" hx-swap="outerHTML">
