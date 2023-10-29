@@ -19,4 +19,10 @@ type ServicePort interface {
 	GetProducts(ctx context.Context, produk domain.ProductDomain) ([]domain.ProductDomain, error)
 	// GetProviderDetail get detail from provider by its id
 	GetProviderDetail(ctx context.Context, idproduk int32) (domain.ProdukProviderDomain, error)
+	// GetListPartnerProduk get partner and produk data based on idproduk
+	GetListPartnerProduk(ctx context.Context, idproduk int32) ([]domain.PartnerProdukDomain, error)
+	// CreatePartnerProduk insert partner produk to database
+	CreatePartnerProduk(ctx context.Context, data domain.PartnerProdukDomain) (domain.PartnerProdukDomain, error)
+	// UpdatePartnerProduk update data partner
+	UpdatePartnerProduk(ctx context.Context, data domain.PartnerProdukDomain) (domain.PartnerProdukDomain, error)
 }
