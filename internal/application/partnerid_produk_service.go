@@ -43,3 +43,19 @@ func (s *Service) CreatePartnerProduk(ctx context.Context, data domain.PartnerPr
 
 	return data, nil
 }
+
+func (s *Service) UpdatePartnerProduk(ctx context.Context, data domain.PartnerProdukDomain) (domain.PartnerProdukDomain, error) {
+	_, err := s.db.UpdatePartnerIDProduk(ctx, mariadb.UpdatePartnerIDProdukParams{
+		IdpartnerProduk: data.IdpartnerProduk,
+		Idproduk:        util.ValidNullInt32(data.Idproduk),
+		Idmerchant:      util.ValidNullInt32(data.Idmerchant),
+		Idpartner:       util.ValidNullInt32(data.Idpartner),
+		Prioritas:       util.ValidNullInt32(data.Prioritas),
+		Status:          util.ValidNullInt32(data.Status),
+	})
+	if err != nil {
+		return domain.PartnerProdukDomain{}, err
+	}
+
+	return data, nil
+}
