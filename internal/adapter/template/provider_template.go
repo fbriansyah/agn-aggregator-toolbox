@@ -7,6 +7,7 @@ func (t *TemplateAdapter) ProductProviderIndex() (*template.Template, error) {
 	return template.New("").ParseFiles(
 		"templates/pages/provider/index.html",
 		"templates/pages/provider/detail.html",
+		"templates/pages/partner-produk/list-partner.html",
 		"templates/shared/nav.html",
 		"templates/shared/base.html",
 	)

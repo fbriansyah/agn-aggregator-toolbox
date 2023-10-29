@@ -28,10 +28,17 @@ func (a *ChiAdapter) ProdukProviderIndex(w http.ResponseWriter, req *http.Reques
 		fmt.Println(err)
 	}
 
+	partners, err := a.service.GetListPartnerProduk(ctx, provider.Idproduk)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	err = tmplFile.ExecuteTemplate(w, "base", M{
 		"IDProvider": idProvider,
 		"PageTitle":  "Provider",
 		"Provider":   provider,
+		"Idproduk":   provider.Idproduk,
+		"Partners":   partners,
 	})
 
 	if err != nil {
