@@ -17,6 +17,13 @@ func ValidNullString(str string) sql.NullString {
 	}
 }
 
+func ValidNullInt32(n int32) sql.NullInt32 {
+	return sql.NullInt32{
+		Valid: true,
+		Int32: n,
+	}
+}
+
 type QueryWhere struct {
 	Wheres []string
 }
