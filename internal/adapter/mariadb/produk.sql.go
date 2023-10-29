@@ -13,7 +13,7 @@ import (
 const createProduct = `-- name: CreateProduct :execresult
 INSERT INTO m_produk 
 (KODE_PRODUK, NAMA_PRODUK, NAMA_PRODUK_DISPLAY, nama_struk, nama_struk_singkatan, produk_alias, produk_group, label_idpel, STATUS)
-vALUES
+VALUES
 (?,?,?,?,?,?,?,?,1)
 `
 
@@ -103,4 +103,44 @@ func (q *Queries) ListProduk(ctx context.Context) ([]MProduk, error) {
 		return nil, err
 	}
 	return items, nil
+}
+
+const updateProduk = `-- name: UpdateProduk :execresult
+UPDATE m_produk 
+SET
+  NAMA_PRODUK=?, 
+  NAMA_PRODUK_DISPLAY=?, 
+  nama_struk=?, 
+  nama_struk_singkatan=?, 
+  produk_alias=?, 
+  produk_group=?, 
+  label_idpel=?, 
+  STATUS=?
+WHERE KODE_PRODUK = ?
+`
+
+type UpdateProdukParams struct {
+	NamaProduk         sql.NullString `json:"nama_produk"`
+	NamaProdukDisplay  sql.NullString `json:"nama_produk_display"`
+	NamaStruk          sql.NullString `json:"nama_struk"`
+	NamaStrukSingkatan sql.NullString `json:"nama_struk_singkatan"`
+	ProdukAlias        sql.NullString `json:"produk_alias"`
+	ProdukGroup        sql.NullString `json:"produk_group"`
+	LabelIdpel         sql.NullString `json:"label_idpel"`
+	Status             sql.NullInt32  `json:"status"`
+	KodeProduk         string         `json:"kode_produk"`
+}
+
+func (q *Queries) UpdateProduk(ctx context.Context, arg UpdateProdukParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, updateProduk,
+		arg.NamaProduk,
+		arg.NamaProdukDisplay,
+		arg.NamaStruk,
+		arg.NamaStrukSingkatan,
+		arg.ProdukAlias,
+		arg.ProdukGroup,
+		arg.LabelIdpel,
+		arg.Status,
+		arg.KodeProduk,
+	)
 }

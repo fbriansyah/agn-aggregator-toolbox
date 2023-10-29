@@ -10,6 +10,56 @@ import (
 	"database/sql"
 )
 
+const createProvider = `-- name: CreateProvider :execresult
+INSERT INTO m_produk_provider
+(KODE_PRODUK, KODE_PRODUK_PROVIDER, NAMA_PRODUK, KATEGORI, PROVIDER, RCTYPE, PROVIDER_BANK, FEE_PRODUK, CLASS_RPC, CLASS_NAME, CLASS_TIPE, CLASS_IP, CLASS_PORT, CLASS_PATH, CLASS_SETTING, CLASS_TIMEOUT, TIPEMODEL, SCREENNAME, STATUS, FEE_APP_1, FEE_CA_1, FEE_BILLER_1, FEE_APP_2, FEE_CA_2, FEE_BILLER_2, FEE_APP_3, FEE_CA_3, FEE_BILLER_3, FEE_APP_4, FEE_CA_4, FEE_BILLER_4)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+`
+
+type CreateProviderParams struct {
+	KodeProduk         sql.NullString `json:"kode_produk"`
+	KodeProdukProvider sql.NullString `json:"kode_produk_provider"`
+	NamaProduk         sql.NullString `json:"nama_produk"`
+	Kategori           sql.NullString `json:"kategori"`
+	Provider           sql.NullString `json:"provider"`
+	Rctype             sql.NullString `json:"rctype"`
+	ProviderBank       sql.NullString `json:"provider_bank"`
+	FeeProduk          sql.NullInt32  `json:"fee_produk"`
+	ClassRpc           sql.NullString `json:"class_rpc"`
+	ClassName          sql.NullString `json:"class_name"`
+	ClassTipe          sql.NullString `json:"class_tipe"`
+	ClassIp            sql.NullString `json:"class_ip"`
+	ClassPort          sql.NullInt32  `json:"class_port"`
+	ClassPath          sql.NullString `json:"class_path"`
+	ClassSetting       sql.NullString `json:"class_setting"`
+	ClassTimeout       sql.NullInt32  `json:"class_timeout"`
+	Tipemodel          sql.NullString `json:"tipemodel"`
+	Screenname         sql.NullString `json:"screenname"`
+}
+
+func (q *Queries) CreateProvider(ctx context.Context, arg CreateProviderParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, createProvider,
+		arg.KodeProduk,
+		arg.KodeProdukProvider,
+		arg.NamaProduk,
+		arg.Kategori,
+		arg.Provider,
+		arg.Rctype,
+		arg.ProviderBank,
+		arg.FeeProduk,
+		arg.ClassRpc,
+		arg.ClassName,
+		arg.ClassTipe,
+		arg.ClassIp,
+		arg.ClassPort,
+		arg.ClassPath,
+		arg.ClassSetting,
+		arg.ClassTimeout,
+		arg.Tipemodel,
+		arg.Screenname,
+	)
+}
+
 const getProviderByID = `-- name: GetProviderByID :one
 SELECT idproduk, kode_produk, kode_produk_provider, nama_produk, kategori, provider, rctype, provider_bank, fee_produk, mode_sto, mode_repeat, class_rpc, class_name, class_tipe, class_ip, class_port, class_path, class_setting, class_timeout, tipemodel, screenname, status, fee_app_1, fee_ca_1, fee_biller_1, fee_app_2, fee_ca_2, fee_biller_2, fee_app_3, fee_ca_3, fee_biller_3, fee_app_4, fee_ca_4, fee_biller_4 FROM m_produk_provider WHERE idproduk = ? LIMIT 1
 `

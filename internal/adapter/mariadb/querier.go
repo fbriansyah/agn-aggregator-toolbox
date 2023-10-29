@@ -10,11 +10,16 @@ import (
 )
 
 type Querier interface {
+	CreatePartnerIDProduk(ctx context.Context, arg CreatePartnerIDProdukParams) (sql.Result, error)
 	CreateProduct(ctx context.Context, arg CreateProductParams) (sql.Result, error)
+	CreateProvider(ctx context.Context, arg CreateProviderParams) (sql.Result, error)
 	GetProductByKode(ctx context.Context, kodeProduk string) (MProduk, error)
 	GetProviderByID(ctx context.Context, idproduk int32) (MProdukProvider, error)
+	ListPartnerIDProduk(ctx context.Context, idproduk sql.NullInt32) ([]MPartneridProduk, error)
 	ListProduk(ctx context.Context) ([]MProduk, error)
 	ListProviderProduk(ctx context.Context, kodeProduk sql.NullString) ([]MProdukProvider, error)
+	UpdatePartnerIDProduk(ctx context.Context, arg UpdatePartnerIDProdukParams) (sql.Result, error)
+	UpdateProduk(ctx context.Context, arg UpdateProdukParams) (sql.Result, error)
 }
 
 var _ Querier = (*Queries)(nil)
