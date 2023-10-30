@@ -48,3 +48,32 @@ func (a *ChiAdapter) GetListPartnerProduk(w http.ResponseWriter, req *http.Reque
 		fmt.Println(err)
 	}
 }
+
+func (a *ChiAdapter) GetPartnerProdukEditForm(w http.ResponseWriter, req *http.Request) {
+	id := req.URL.Query().Get("id")
+	idPartnerProduk, err := strconv.ParseInt(id, 10, 32)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	tmpl, err := a.template.GetPartnerProdukEditForm()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	partner, err := a.service.GetPartnerProduk(ctx, int32(idPartnerProduk))
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = tmpl.ExecuteTemplate(w, "content", M{
+		"Idproduk": partner.Idproduk,
+		"Partner":  partner,
+	})
+	if err != nil {
+		fmt.Println(err)
+	}
+}

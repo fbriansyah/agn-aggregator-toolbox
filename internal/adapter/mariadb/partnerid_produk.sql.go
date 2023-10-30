@@ -31,6 +31,24 @@ func (q *Queries) CreatePartnerIDProduk(ctx context.Context, arg CreatePartnerID
 	)
 }
 
+const getPartnerIDProduk = `-- name: GetPartnerIDProduk :one
+SELECT idpartner_produk, idproduk, idpartner, idmerchant, prioritas, status FROM m_partnerid_produk WHERE idpartner_produk = ?
+`
+
+func (q *Queries) GetPartnerIDProduk(ctx context.Context, idpartnerProduk int32) (MPartneridProduk, error) {
+	row := q.db.QueryRowContext(ctx, getPartnerIDProduk, idpartnerProduk)
+	var i MPartneridProduk
+	err := row.Scan(
+		&i.IdpartnerProduk,
+		&i.Idproduk,
+		&i.Idpartner,
+		&i.Idmerchant,
+		&i.Prioritas,
+		&i.Status,
+	)
+	return i, err
+}
+
 const listPartnerIDProduk = `-- name: ListPartnerIDProduk :many
 SELECT idpartner_produk, idproduk, idpartner, idmerchant, prioritas, status FROM m_partnerid_produk WHERE idproduk = ?
 `

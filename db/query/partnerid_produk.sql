@@ -14,3 +14,6 @@ SET
   PRIORITAS = ?, 
   STATUS = ?
 WHERE IDPARTNER_PRODUK = ?;
+
+-- name: GetPartnerIDProduk :one
+SELECT * FROM m_partnerid_produk WHERE idpartner_produk = ?;

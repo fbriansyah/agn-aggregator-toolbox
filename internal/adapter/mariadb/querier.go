@@ -13,6 +13,7 @@ type Querier interface {
 	CreatePartnerIDProduk(ctx context.Context, arg CreatePartnerIDProdukParams) (sql.Result, error)
 	CreateProduct(ctx context.Context, arg CreateProductParams) (sql.Result, error)
 	CreateProvider(ctx context.Context, arg CreateProviderParams) (sql.Result, error)
+	GetPartnerIDProduk(ctx context.Context, idpartnerProduk int32) (MPartneridProduk, error)
 	GetProductByKode(ctx context.Context, kodeProduk string) (MProduk, error)
 	GetProviderByID(ctx context.Context, idproduk int32) (MProdukProvider, error)
 	ListPartnerIDProduk(ctx context.Context, idproduk sql.NullInt32) ([]MPartneridProduk, error)

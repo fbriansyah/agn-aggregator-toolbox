@@ -21,4 +21,6 @@ type TemplatePort interface {
 	GetPartnerProdukCreateForm() (*template.Template, error)
 	// GetListPartnerProduk get html template from partner-produk/list-product.html
 	GetListPartnerProduk() (*template.Template, error)
+	// GetPartnerProdukEditForm get html template from partner-produk/edit-form.html
+	GetPartnerProdukEditForm() (*template.Template, error)
 }

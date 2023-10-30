@@ -9,3 +9,7 @@ func (t *TemplateAdapter) GetPartnerProdukCreateForm() (*template.Template, erro
 func (t *TemplateAdapter) GetListPartnerProduk() (*template.Template, error) {
 	return template.New("").ParseFiles("templates/pages/partner-produk/list-partner.html")
 }
+
+func (t *TemplateAdapter) GetPartnerProdukEditForm() (*template.Template, error) {
+	return template.New("").ParseFiles("templates/pages/partner-produk/edit-form.html")
+}

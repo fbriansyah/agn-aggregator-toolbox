@@ -59,3 +59,15 @@ func (s *Service) UpdatePartnerProduk(ctx context.Context, data domain.PartnerPr
 
 	return data, nil
 }
+
+func (s *Service) GetPartnerProduk(ctx context.Context, idpartnerproduk int32) (domain.PartnerProdukDomain, error) {
+	partner, err := s.db.GetPartnerIDProduk(ctx, idpartnerproduk)
+	if err != nil {
+		return domain.PartnerProdukDomain{}, err
+	}
+
+	var pp domain.PartnerProdukDomain
+	pp.FromMPartneridProduk(partner)
+
+	return pp, nil
+}
