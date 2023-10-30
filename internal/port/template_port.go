@@ -17,4 +17,8 @@ type TemplatePort interface {
 	GetProviderCreateForm() (*template.Template, error)
 	// GetListProvider get html template from provider/list-product.html
 	GetListProvider() (*template.Template, error)
+	// GetPartnerProdukCreateForm get html template from partner-produk/create-form.html
+	GetPartnerProdukCreateForm() (*template.Template, error)
+	// GetListPartnerProduk get html template from partner-produk/list-product.html
+	GetListPartnerProduk() (*template.Template, error)
 }
