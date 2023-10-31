@@ -1,6 +1,6 @@
 package template
 
-import "text/template"
+import "html/template"
 
 func (t *TemplateAdapter) GetPartnerProdukCreateForm() (*template.Template, error) {
 	return template.New("").ParseFiles("templates/pages/partner-produk/create-form.html")

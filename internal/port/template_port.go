@@ -1,6 +1,6 @@
 package port
 
-import "text/template"
+import "html/template"
 
 type TemplatePort interface {
 	// ProductIndex return template from list-product/index.html

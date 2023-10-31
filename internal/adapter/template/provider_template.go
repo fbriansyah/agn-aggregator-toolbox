@@ -1,6 +1,6 @@
 package template
 
-import "text/template"
+import "html/template"
 
 // ProductProviderIndex get html template for provider index page
 func (t *TemplateAdapter) ProductProviderIndex() (*template.Template, error) {

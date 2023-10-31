@@ -1,6 +1,6 @@
 package template
 
-import "text/template"
+import "html/template"
 
 // ProductIndex return template from list-product/index.html
 func (t *TemplateAdapter) ProductIndex() (*template.Template, error) {
