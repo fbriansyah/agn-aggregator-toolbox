@@ -2,6 +2,7 @@ package fiber
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application/domain"
@@ -68,4 +69,44 @@ func (a *FiberAdapter) DetailProductPage(c *fiber.Ctx) error {
 		"Product":   product,
 		"Providers": providers,
 	})
+}
+
+// SaveProduk recieve post form and create produk from the post data
+func (a *FiberAdapter) SaveProduk(c *fiber.Ctx) error {
+	produk := domain.ProductDomain{
+		KodeProduk:         c.FormValue("kode-produk"),
+		NamaProduk:         c.FormValue("nama-produk"),
+		NamaProdukDisplay:  c.FormValue("nama-produk-display"),
+		NamaStruk:          c.FormValue("nama-struk"),
+		NamaStrukSingkatan: c.FormValue("nama-struk-singkatan"),
+		ProdukAlias:        c.FormValue("produk-alias"),
+		ProdukGroup:        c.FormValue("produk-group"),
+		LabelIdpel:         c.FormValue("label-id"),
+		ProdukDate:         time.Now(),
+		Status:             1,
+	}
+
+	fmt.Println(produk)
+
+	return fiber.ErrNotFound
+}
+
+// UpdateProduk recieve post form and update the product based on form data
+func (a *FiberAdapter) UpdateProduk(c *fiber.Ctx) error {
+	produk := domain.ProductDomain{
+		KodeProduk:         c.FormValue("kode-produk"),
+		NamaProduk:         c.FormValue("nama-produk"),
+		NamaProdukDisplay:  c.FormValue("nama-produk-display"),
+		NamaStruk:          c.FormValue("nama-struk"),
+		NamaStrukSingkatan: c.FormValue("nama-struk-singkatan"),
+		ProdukAlias:        c.FormValue("produk-alias"),
+		ProdukGroup:        c.FormValue("produk-group"),
+		LabelIdpel:         c.FormValue("label-id"),
+		ProdukDate:         time.Now(),
+		Status:             1,
+	}
+
+	fmt.Println(produk)
+
+	return fiber.ErrNotFound
 }
