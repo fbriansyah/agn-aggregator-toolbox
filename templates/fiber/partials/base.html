@@ -18,7 +18,7 @@
     <div class="min-h-full">
       {{ template "partials/nav" . }}
 
-      <div class="py-10">
+      <div class="py-10" id="content">
         <header>
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center">
             <h1
@@ -27,12 +27,14 @@
               {{.PageTitle}}
             </h1>
             {{ if ne .AddButtonUrl nil }}
-            <a
-              href="{{.AddButtonUrl}}"
+            <button
+              hx-get="{{.AddButtonUrl}}"
+              hx-swap="outerHTML transition:true"
+              hx-target="#content"
               class="ml-auto rounded-md bg-green-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
             >
               Tambah Data
-            </a>
+            </button>
             {{end}}
           </div>
         </header>

@@ -39,3 +39,8 @@ func (a *FiberAdapter) GetProducts(c *fiber.Ctx) error {
 		"Products": products,
 	})
 }
+
+func (a *FiberAdapter) CreateFormPage(c *fiber.Ctx) error {
+	err := c.Render("pages/product/create-form", nil)
+	return err
+}

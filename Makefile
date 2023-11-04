@@ -15,4 +15,7 @@ compose-down:
 run:
 	go run ./cmd/
 
+air:
+	air
+
 .PHONY: mariadb run compose-up compose-down
