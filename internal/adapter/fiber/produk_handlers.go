@@ -40,7 +40,28 @@ func (a *FiberAdapter) GetProducts(c *fiber.Ctx) error {
 	})
 }
 
-func (a *FiberAdapter) CreateFormPage(c *fiber.Ctx) error {
-	err := c.Render("pages/product/create-form", nil)
-	return err
+func (a *FiberAdapter) CreateProdukFormPage(c *fiber.Ctx) error {
+	return c.Render("pages/product/create-form", nil)
+}
+
+func (a *FiberAdapter) DetailProductPage(c *fiber.Ctx) error {
+	kodeProduk := c.Query("kode_product", "")
+	if kodeProduk == "" {
+		return fiber.ErrBadRequest
+	}
+	product, err := a.service.GetProdukByCode(context.Background(), kodeProduk)
+	if err != nil {
+		return err
+	}
+
+	providers, err := a.service.GetProductProvider(context.Background(), kodeProduk)
+	if err != nil {
+		return err
+	}
+
+	return c.Render("pages/product/detail-product", fiber.Map{
+		"PageTitle": "Detail Product",
+		"Product":   product,
+		"Providers": providers,
+	})
 }
