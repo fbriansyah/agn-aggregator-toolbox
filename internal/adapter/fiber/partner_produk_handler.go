@@ -93,7 +93,6 @@ func (a *FiberAdapter) SavePartnerProduk(c *fiber.Ctx) error {
 		Status:     status,
 	}
 
-	fmt.Println(ppDomain)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
 	defer cancel()
 
@@ -107,5 +106,47 @@ func (a *FiberAdapter) SavePartnerProduk(c *fiber.Ctx) error {
 
 // UpdatePartnerProduk update partner produk data
 func (a *FiberAdapter) UpdatePartnerProduk(c *fiber.Ctx) error {
-	return fiber.NewError(fiber.ErrNotFound.Code, "UpdatePartnerProduk not yet implemented")
+	idPartner, err := util.StrToInt32(c.FormValue("idpartner"))
+	if err != nil {
+		return err
+	}
+	idMerchant, err := util.StrToInt32(c.FormValue("idmerchant"))
+	if err != nil {
+		return err
+	}
+	idProduk, err := util.StrToInt32(c.FormValue("idproduk"))
+	if err != nil {
+		return err
+	}
+	prioritas, err := util.StrToInt32(c.FormValue("prioritas"))
+	if err != nil {
+		return err
+	}
+	status, err := util.StrToInt32(c.FormValue("status"))
+	if err != nil {
+		return err
+	}
+	idPartnerProduk, err := util.StrToInt32(c.FormValue("idpartner_produk"))
+	if err != nil {
+		return err
+	}
+
+	ppDomain := domain.PartnerProdukDomain{
+		IdpartnerProduk: idPartnerProduk,
+		Idpartner:       idPartner,
+		Idmerchant:      idMerchant,
+		Idproduk:        idProduk,
+		Prioritas:       prioritas,
+		Status:          status,
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	_, err = a.service.UpdatePartnerProduk(ctx, ppDomain)
+	if err != nil {
+		return err
+	}
+
+	return c.Redirect(fmt.Sprintf("/provider?id=%d", ppDomain.Idproduk))
 }
