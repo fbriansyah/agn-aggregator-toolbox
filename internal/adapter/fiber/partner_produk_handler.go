@@ -38,9 +38,23 @@ func (a *FiberAdapter) GetListPartnerProduk(c *fiber.Ctx) error {
 	})
 }
 
-// GetPartnerProdukEditForm render templates/chi/pages/partner-produk/edit-form.html
+// GetPartnerProdukEditForm render pages/partner-produk/edit-form.html
 func (a *FiberAdapter) GetPartnerProdukEditForm(c *fiber.Ctx) error {
-	// id := c.Query("id")
+	id := c.Query("id")
+	idPartnerProduk, err := strconv.ParseInt(id, 10, 32)
+	if err != nil {
+		return err
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
 
-	return fiber.ErrNotFound
+	partner, err := a.service.GetPartnerProduk(ctx, int32(idPartnerProduk))
+	if err != nil {
+		return err
+	}
+
+	return c.Render("pages/partner-produk/edit-form", fiber.Map{
+		"Idproduk": partner.Idproduk,
+		"Partner":  partner,
+	})
 }
