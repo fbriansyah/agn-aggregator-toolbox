@@ -116,3 +116,25 @@ func (s *Service) GetProducts(ctx context.Context, produk domain.ProductDomain) 
 
 	return products, nil
 }
+
+// UpdateProduct save updated produk to database
+func (s *Service) UpdateProduct(ctx context.Context, produk domain.ProductDomain) (domain.ProductDomain, error) {
+	arg := mariadb.UpdateProdukParams{
+		NamaProduk:         util.ValidNullString(produk.NamaProduk),
+		NamaProdukDisplay:  util.ValidNullString(produk.NamaProdukDisplay),
+		NamaStruk:          util.ValidNullString(produk.NamaStruk),
+		NamaStrukSingkatan: util.ValidNullString(produk.NamaStrukSingkatan),
+		ProdukAlias:        util.ValidNullString(produk.ProdukAlias),
+		ProdukGroup:        util.ValidNullString(produk.ProdukGroup),
+		LabelIdpel:         util.ValidNullString(produk.LabelIdpel),
+		KodeProduk:         produk.KodeProduk,
+		Status:             util.ValidNullInt32(produk.Status),
+	}
+
+	_, err := s.db.UpdateProduk(ctx, arg)
+	if err != nil {
+		return domain.ProductDomain{}, err
+	}
+
+	return produk, nil
+}

@@ -2,7 +2,7 @@ package fiber
 
 import (
 	"context"
-	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application/domain"
@@ -71,9 +71,10 @@ func (a *FiberAdapter) DetailProductPage(c *fiber.Ctx) error {
 	})
 }
 
-// SaveProduk recieve post form and create produk from the post data
+// SaveProduk recieve post form and create produk from the post data. After success save,
+// it will redirects to /detail-product?kode_product={{.KodeProduk}}
 func (a *FiberAdapter) SaveProduk(c *fiber.Ctx) error {
-	produk := domain.ProductDomain{
+	productDomain := domain.ProductDomain{
 		KodeProduk:         c.FormValue("kode-produk"),
 		NamaProduk:         c.FormValue("nama-produk"),
 		NamaProdukDisplay:  c.FormValue("nama-produk-display"),
@@ -86,14 +87,28 @@ func (a *FiberAdapter) SaveProduk(c *fiber.Ctx) error {
 		Status:             1,
 	}
 
-	fmt.Println(produk)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
 
-	return fiber.ErrNotFound
+	_, err := a.service.CreateProduct(ctx, productDomain)
+	if err != nil {
+		return err
+	}
+
+	return c.Redirect("/detail-product?kode_product=" + productDomain.KodeProduk)
+
 }
 
 // UpdateProduk recieve post form and update the product based on form data
 func (a *FiberAdapter) UpdateProduk(c *fiber.Ctx) error {
-	produk := domain.ProductDomain{
+
+	s := c.FormValue("status")
+	status, err := strconv.ParseInt(s, 10, 32)
+	if err != nil {
+		return err
+	}
+
+	productDomain := domain.ProductDomain{
 		KodeProduk:         c.FormValue("kode-produk"),
 		NamaProduk:         c.FormValue("nama-produk"),
 		NamaProdukDisplay:  c.FormValue("nama-produk-display"),
@@ -103,10 +118,16 @@ func (a *FiberAdapter) UpdateProduk(c *fiber.Ctx) error {
 		ProdukGroup:        c.FormValue("produk-group"),
 		LabelIdpel:         c.FormValue("label-id"),
 		ProdukDate:         time.Now(),
-		Status:             1,
+		Status:             int32(status),
 	}
 
-	fmt.Println(produk)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
 
-	return fiber.ErrNotFound
+	produk, err := a.service.UpdateProduct(ctx, productDomain)
+	if err != nil {
+		return err
+	}
+
+	return c.Redirect("/detail-product?kode_product=" + produk.KodeProduk)
 }

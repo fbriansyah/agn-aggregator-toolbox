@@ -27,4 +27,6 @@ type ServicePort interface {
 	UpdatePartnerProduk(ctx context.Context, data domain.PartnerProdukDomain) (domain.PartnerProdukDomain, error)
 	// GetPartnerProduk get one partner produk base on idpartnerproduk
 	GetPartnerProduk(ctx context.Context, idpartnerproduk int32) (domain.PartnerProdukDomain, error)
+	// UpdateProduct save updated produk to database
+	UpdateProduct(ctx context.Context, produk domain.ProductDomain) (domain.ProductDomain, error)
 }
