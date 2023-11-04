@@ -1,0 +1,318 @@
+<div
+  id="create-form"
+  class="mx-auto max-w-7xl mt-4 py-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200"
+>
+  <form
+    htmx-post="/edit-provider"
+    htmx-target="#edit-form"
+    htmx-swap="outerHTML transition:true"
+  >
+    <div class="space-y-12">
+      <div class="border-b border-gray-900/10 pb-12">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">
+          Edit Provider
+        </h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">
+          Isi data sesuai detail provider
+        </p>
+
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label
+              for="kode_produk"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Kode Produk</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="kode_produk"
+                id="kode_produk"
+                value="{{.KodeProduk}}"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label
+              for="kode_produk_provider"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Kode Produk Provider</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="kode_produk_provider"
+                id="kode_produk_provider"
+                value="{{.KodeProduk}}"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label
+              for="nama_produk"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Nama Produk</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="nama_produk"
+                id="nama_produk"
+                value="{{.Product.NamaProduk}}"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label
+              for="kategori"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Kategori</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="kategori"
+                id="kategori"
+                value="P"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label
+              for="provider"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Provider</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="provider"
+                id="provider"
+                value="BANK_KALSEL"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label
+              for="rctype"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >RC Type</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="rctype"
+                id="rctype"
+                value=""
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="provider_bank"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Provider Bank</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="provider_bank"
+                id="provider_bank"
+                value="BANK KALSEL"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="fee_produk"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Fee Produk</label
+            >
+            <div class="mt-2">
+              <input
+                type="number"
+                name="fee_produk"
+                id="fee_produk"
+                value="0"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="class_rpc"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Class RPC</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="class_rpc"
+                id="class_rpc"
+                value="multiple"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="class_name"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Class Name</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="class_name"
+                id="class_name"
+                value=""
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="class_tipe"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Class Tipe</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="class_tipe"
+                id="class_tipe"
+                value="http"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="class_ip"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Class IP</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="class_ip"
+                id="class_ip"
+                value=""
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="class_port"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Class Port</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="class_port"
+                id="class_port"
+                value=""
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="class_path"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Class Path</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="class_path"
+                id="class_path"
+                value=""
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-6">
+            <label
+              for="class_setting"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Class Setting</label
+            >
+            <div class="mt-2">
+              <textarea
+                rows="4"
+                name="class_setting"
+                id="class_setting"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              ></textarea>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="class_timeout"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Class Timeout</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="class_timeout"
+                id="class_timeout"
+                value=""
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label
+              for="screenname"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Screen Name</label
+            >
+            <div class="mt-2">
+              <input
+                type="text"
+                name="screenname"
+                id="screenname"
+                value=""
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <button
+        hx-get="/provider/list-provider?kode_product={{.KodeProduk}}"
+        hx-target="#create-form"
+        hx-swap="outerHTML transition:true"
+        class="text-sm font-semibold leading-6 text-gray-900"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
