@@ -77,3 +77,22 @@ func (a *FiberAdapter) ProdukProviderIndex(c *fiber.Ctx) error {
 		"Partners":   partners,
 	})
 }
+
+func (a *FiberAdapter) GetProviderEditor(c *fiber.Ctx) error {
+	idProvider := c.Query("id")
+	id, err := strconv.ParseInt(idProvider, 10, 32)
+	if err != nil {
+		return err
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	provider, err := a.service.GetProviderDetail(ctx, int32(id))
+	if err != nil {
+		return err
+	}
+	return c.Render("pages/provider/edit-form", fiber.Map{
+		"Provider": provider,
+	})
+}
