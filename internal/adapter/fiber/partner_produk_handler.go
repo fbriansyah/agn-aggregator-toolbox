@@ -2,9 +2,12 @@ package fiber
 
 import (
 	"context"
+	"fmt"
 	"strconv"
 	"time"
 
+	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application/domain"
+	"github.com/fbriansyah/agn-aggregator-toolbox/util"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -61,7 +64,45 @@ func (a *FiberAdapter) GetPartnerProdukEditForm(c *fiber.Ctx) error {
 
 // SavePartnerProduk insert data to partner produk
 func (a *FiberAdapter) SavePartnerProduk(c *fiber.Ctx) error {
-	return fiber.NewError(fiber.ErrNotFound.Code, "SavePartnerProduk not yet impemented")
+	idPartner, err := util.StrToInt32(c.FormValue("idpartner"))
+	if err != nil {
+		return err
+	}
+	idMerchant, err := util.StrToInt32(c.FormValue("idmerchant"))
+	if err != nil {
+		return err
+	}
+	idProduk, err := util.StrToInt32(c.FormValue("idproduk"))
+	if err != nil {
+		return err
+	}
+	prioritas, err := util.StrToInt32(c.FormValue("prioritas"))
+	if err != nil {
+		return err
+	}
+	status, err := util.StrToInt32(c.FormValue("status"))
+	if err != nil {
+		return err
+	}
+
+	ppDomain := domain.PartnerProdukDomain{
+		Idpartner:  idPartner,
+		Idmerchant: idMerchant,
+		Idproduk:   idProduk,
+		Prioritas:  prioritas,
+		Status:     status,
+	}
+
+	fmt.Println(ppDomain)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	partnerProduk, err := a.service.CreatePartnerProduk(ctx, ppDomain)
+	if err != nil {
+		return err
+	}
+
+	return c.Redirect(fmt.Sprintf("/provider?id=%d", partnerProduk.Idproduk))
 }
 
 // UpdatePartnerProduk update partner produk data
