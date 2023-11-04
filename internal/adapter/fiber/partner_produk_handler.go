@@ -58,3 +58,13 @@ func (a *FiberAdapter) GetPartnerProdukEditForm(c *fiber.Ctx) error {
 		"Partner":  partner,
 	})
 }
+
+// SavePartnerProduk insert data to partner produk
+func (a *FiberAdapter) SavePartnerProduk(c *fiber.Ctx) error {
+	return fiber.NewError(fiber.ErrNotFound.Code, "SavePartnerProduk not yet impemented")
+}
+
+// UpdatePartnerProduk update partner produk data
+func (a *FiberAdapter) UpdatePartnerProduk(c *fiber.Ctx) error {
+	return fiber.NewError(fiber.ErrNotFound.Code, "UpdatePartnerProduk not yet implemented")
+}
