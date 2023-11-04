@@ -100,6 +100,7 @@ func (a *FiberAdapter) GetProviderEditor(c *fiber.Ctx) error {
 }
 
 // SaveProvider recieve provider data from create-form and save it to database.
+// If success inserted data, it will redirects to /provider?id={{.Idproduk}}
 func (a *FiberAdapter) SaveProvider(c *fiber.Ctx) error {
 	fee := c.FormValue("fee_produk")
 	port := c.FormValue("class_port")
