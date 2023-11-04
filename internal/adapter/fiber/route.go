@@ -11,7 +11,7 @@ func (a *FiberAdapter) router() {
 	a.app.Get("/provider", a.ProdukProviderIndex)
 	a.app.Get("/provider/editor", a.GetProviderEditor)
 
-	// a.app.Get("/partner-produk/create-form", a.GetPartnerProdukForm)
-	// a.app.Get("/partner-produk", a.GetListPartnerProduk)
-	// a.app.Get("/partner-produk/edit-form", a.GetPartnerProdukEditForm)
+	a.app.Get("/partner-produk/create-form", a.GetPartnerProdukForm)
+	a.app.Get("/partner-produk", a.GetListPartnerProduk)
+	a.app.Get("/partner-produk/edit-form", a.GetPartnerProdukEditForm)
 }
