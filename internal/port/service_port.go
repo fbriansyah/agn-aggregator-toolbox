@@ -29,4 +29,6 @@ type ServicePort interface {
 	GetPartnerProduk(ctx context.Context, idpartnerproduk int32) (domain.PartnerProdukDomain, error)
 	// UpdateProduct save updated produk to database
 	UpdateProduct(ctx context.Context, produk domain.ProductDomain) (domain.ProductDomain, error)
+	// CreateProvider insert provider data to database
+	CreateProvider(ctx context.Context, provider domain.ProdukProviderDomain) (domain.ProdukProviderDomain, error)
 }
