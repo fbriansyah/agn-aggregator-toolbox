@@ -21,6 +21,7 @@ type Querier interface {
 	ListProviderProduk(ctx context.Context, kodeProduk sql.NullString) ([]MProdukProvider, error)
 	UpdatePartnerIDProduk(ctx context.Context, arg UpdatePartnerIDProdukParams) (sql.Result, error)
 	UpdateProduk(ctx context.Context, arg UpdateProdukParams) (sql.Result, error)
+	UpdateProvider(ctx context.Context, arg UpdateProviderParams) (sql.Result, error)
 }
 
 var _ Querier = (*Queries)(nil)

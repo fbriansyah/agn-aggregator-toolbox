@@ -167,3 +167,76 @@ func (q *Queries) ListProviderProduk(ctx context.Context, kodeProduk sql.NullStr
 	}
 	return items, nil
 }
+
+const updateProvider = `-- name: UpdateProvider :execresult
+UPDATE m_produk_provider
+SET 
+    KODE_PRODUK=?,
+    KODE_PRODUK_PROVIDER=?,
+    NAMA_PRODUK=?,
+    KATEGORI=?,
+    PROVIDER=?,
+    RCTYPE=?,
+    PROVIDER_BANK=?,
+    FEE_PRODUK=?,
+    CLASS_RPC=?,
+    CLASS_NAME=?,
+    CLASS_TIPE=?,
+    CLASS_IP=?,
+    CLASS_PORT=?,
+    CLASS_PATH=?,
+    CLASS_SETTING=?,
+    CLASS_TIMEOUT=?,
+    TIPEMODEL=?,
+    SCREENNAME=?,
+    STATUS=?
+WHERE IDPRODUK=?
+`
+
+type UpdateProviderParams struct {
+	KodeProduk         sql.NullString `json:"kode_produk"`
+	KodeProdukProvider sql.NullString `json:"kode_produk_provider"`
+	NamaProduk         sql.NullString `json:"nama_produk"`
+	Kategori           sql.NullString `json:"kategori"`
+	Provider           sql.NullString `json:"provider"`
+	Rctype             sql.NullString `json:"rctype"`
+	ProviderBank       sql.NullString `json:"provider_bank"`
+	FeeProduk          sql.NullInt32  `json:"fee_produk"`
+	ClassRpc           sql.NullString `json:"class_rpc"`
+	ClassName          sql.NullString `json:"class_name"`
+	ClassTipe          sql.NullString `json:"class_tipe"`
+	ClassIp            sql.NullString `json:"class_ip"`
+	ClassPort          sql.NullInt32  `json:"class_port"`
+	ClassPath          sql.NullString `json:"class_path"`
+	ClassSetting       sql.NullString `json:"class_setting"`
+	ClassTimeout       sql.NullInt32  `json:"class_timeout"`
+	Tipemodel          sql.NullString `json:"tipemodel"`
+	Screenname         sql.NullString `json:"screenname"`
+	Status             sql.NullInt32  `json:"status"`
+	Idproduk           int32          `json:"idproduk"`
+}
+
+func (q *Queries) UpdateProvider(ctx context.Context, arg UpdateProviderParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, updateProvider,
+		arg.KodeProduk,
+		arg.KodeProdukProvider,
+		arg.NamaProduk,
+		arg.Kategori,
+		arg.Provider,
+		arg.Rctype,
+		arg.ProviderBank,
+		arg.FeeProduk,
+		arg.ClassRpc,
+		arg.ClassName,
+		arg.ClassTipe,
+		arg.ClassIp,
+		arg.ClassPort,
+		arg.ClassPath,
+		arg.ClassSetting,
+		arg.ClassTimeout,
+		arg.Tipemodel,
+		arg.Screenname,
+		arg.Status,
+		arg.Idproduk,
+	)
+}

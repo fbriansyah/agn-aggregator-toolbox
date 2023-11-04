@@ -38,6 +38,7 @@ func (s *Service) CreateProvider(ctx context.Context, provider domain.ProdukProv
 		ClassPort:          util.ValidNullInt32(provider.ClassPort),
 		ClassPath:          util.ValidNullString(provider.ClassPath),
 		ClassSetting:       util.ValidNullString(provider.ClassSetting),
+		ClassTimeout:       util.ValidNullInt32(provider.ClassTimeout),
 		Tipemodel:          util.ValidNullString(""),
 		Screenname:         util.ValidNullString(provider.Screenname),
 	}
@@ -53,6 +54,36 @@ func (s *Service) CreateProvider(ctx context.Context, provider domain.ProdukProv
 	}
 
 	provider.Idproduk = int32(id)
+
+	return provider, nil
+}
+
+func (s *Service) UpdateProvider(ctx context.Context, provider domain.ProdukProviderDomain) (domain.ProdukProviderDomain, error) {
+	arg := mariadb.UpdateProviderParams{
+		Idproduk:           provider.Idproduk,
+		KodeProduk:         util.ValidNullString(provider.KodeProduk),
+		KodeProdukProvider: util.ValidNullString(provider.KodeProdukProvider),
+		NamaProduk:         util.ValidNullString(provider.NamaProduk),
+		Kategori:           util.ValidNullString(provider.Kategori),
+		Provider:           util.ValidNullString(provider.Provider),
+		Rctype:             util.ValidNullString(provider.Rctype),
+		ProviderBank:       util.ValidNullString(provider.ProviderBank),
+		FeeProduk:          util.ValidNullInt32(provider.FeeProduk),
+		ClassRpc:           util.ValidNullString(provider.ClassRpc),
+		ClassName:          util.ValidNullString(provider.ClassName),
+		ClassTipe:          util.ValidNullString(provider.ClassTipe),
+		ClassIp:            util.ValidNullString(provider.ClassIp),
+		ClassPort:          util.ValidNullInt32(provider.ClassPort),
+		ClassPath:          util.ValidNullString(provider.ClassPath),
+		ClassSetting:       util.ValidNullString(provider.ClassSetting),
+		ClassTimeout:       util.ValidNullInt32(provider.ClassTimeout),
+		Tipemodel:          util.ValidNullString(""),
+		Screenname:         util.ValidNullString(provider.Screenname),
+	}
+	_, err := s.db.UpdateProvider(ctx, arg)
+	if err != nil {
+		return domain.ProdukProviderDomain{}, err
+	}
 
 	return provider, nil
 }
