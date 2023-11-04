@@ -2,11 +2,7 @@
   id="create-form"
   class="mx-auto max-w-7xl mt-4 py-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200"
 >
-  <form
-    htmx-post="/create-partner-produk"
-    htmx-target="#create-form"
-    htmx-swap="outerHTML transition:true"
-  >
+  <form action="/partner-produk/save" method="POST">
     <div class="space-y-12">
       <div class="border-b border-gray-900/10 pb-12">
         <h2 class="text-base font-semibold leading-7 text-gray-900">
