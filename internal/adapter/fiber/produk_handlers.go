@@ -8,6 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+// ListProduk render pages/product/index
 func (a *FiberAdapter) ListProduk(c *fiber.Ctx) error {
 	products, err := a.service.ListProduct(context.Background())
 	if err != nil {
@@ -21,6 +22,7 @@ func (a *FiberAdapter) ListProduk(c *fiber.Ctx) error {
 	}, "partials/base")
 }
 
+// GetProducts render pages/product/list-product
 func (a *FiberAdapter) GetProducts(c *fiber.Ctx) error {
 	kodeProduk := c.Query("kode-produk")
 	namaProduk := c.Query("nama-produk")
@@ -40,10 +42,12 @@ func (a *FiberAdapter) GetProducts(c *fiber.Ctx) error {
 	})
 }
 
+// CreateProdukFormPage render pages/product/create-form
 func (a *FiberAdapter) CreateProdukFormPage(c *fiber.Ctx) error {
 	return c.Render("pages/product/create-form", nil)
 }
 
+// DetailProductPage render pages/product/detail-product
 func (a *FiberAdapter) DetailProductPage(c *fiber.Ctx) error {
 	kodeProduk := c.Query("kode_product", "")
 	if kodeProduk == "" {

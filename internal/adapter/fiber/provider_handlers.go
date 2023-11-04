@@ -26,6 +26,7 @@ func (a *FiberAdapter) GetProviderCreateForm(c *fiber.Ctx) error {
 	})
 }
 
+// GetListProvider render pages/provider/list-provider
 func (a *FiberAdapter) GetListProvider(c *fiber.Ctx) error {
 	kodeProduk := c.Query("kode_product", "")
 	if kodeProduk == "" {
@@ -47,6 +48,7 @@ func (a *FiberAdapter) GetListProvider(c *fiber.Ctx) error {
 	})
 }
 
+// ProdukProviderIndex render pages/provider/index
 func (a *FiberAdapter) ProdukProviderIndex(c *fiber.Ctx) error {
 	idProvider := c.Query("id")
 	id, err := strconv.ParseInt(idProvider, 10, 32)
