@@ -71,3 +71,20 @@ func (s *Service) GetPartnerProduk(ctx context.Context, idpartnerproduk int32) (
 
 	return pp, nil
 }
+
+func (s *Service) GetPartners(ctx context.Context) ([]domain.PartnerDomain, error) {
+	partners, err := s.db.GetPartners(ctx)
+	if err != nil {
+		return []domain.PartnerDomain{}, err
+	}
+
+	listPartner := make([]domain.PartnerDomain, len(partners))
+
+	for i, p := range partners {
+		var partnerDomain domain.PartnerDomain
+		partnerDomain.FromMPartner(p)
+		listPartner[i] = partnerDomain
+	}
+
+	return listPartner, nil
+}

@@ -10,10 +10,15 @@ import (
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/adapter/fiber"
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/adapter/mariadb"
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application"
+	"github.com/fbriansyah/agn-aggregator-toolbox/util"
 )
 
 func main() {
-	db, err := sql.Open("mysql", "root:secret@tcp(localhost:3306)/db_aggregator_dev?parseTime=true")
+	config, err := util.LoadConfig("./")
+	if err != nil {
+		log.Fatal(err)
+	}
+	db, err := sql.Open("mysql", config.DBSource)
 	if err != nil {
 		log.Fatalf("cannot connect to database: %v", err)
 	}

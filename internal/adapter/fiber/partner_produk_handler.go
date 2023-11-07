@@ -14,8 +14,19 @@ import (
 // GetPartnerProdukForm render pages/partner-produk/create-form.html
 func (a *FiberAdapter) GetPartnerProdukForm(c *fiber.Ctx) error {
 	id := c.Query("idproduk")
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	// all partners registered in database
+	partners, err := a.service.GetPartners(ctx)
+	if err != nil {
+		return err
+	}
+
 	return c.Render("pages/partner-produk/create-form", fiber.Map{
 		"Idproduk": id,
+		"Partners": partners,
 	})
 }
 
@@ -56,9 +67,26 @@ func (a *FiberAdapter) GetPartnerProdukEditForm(c *fiber.Ctx) error {
 		return err
 	}
 
+	// all partners registered in database
+	listPartner, err := a.service.GetPartners(ctx)
+	if err != nil {
+		return err
+	}
+
+	partnersOption := make([]map[string]any, len(listPartner))
+
+	for i, p := range listPartner {
+		partnersOption[i] = map[string]any{
+			"Label":      p.NamaPartner,
+			"Value":      p.IdPartner,
+			"IsSelected": (p.IdPartner == partner.Idpartner),
+		}
+	}
+
 	return c.Render("pages/partner-produk/edit-form", fiber.Map{
-		"Idproduk": partner.Idproduk,
-		"Partner":  partner,
+		"Idproduk":       partner.Idproduk,
+		"Partner":        partner,
+		"PartnersOption": partnersOption,
 	})
 }
 

@@ -33,4 +33,6 @@ type ServicePort interface {
 	CreateProvider(ctx context.Context, provider domain.ProdukProviderDomain) (domain.ProdukProviderDomain, error)
 	// UpdateProvider update provider data
 	UpdateProvider(ctx context.Context, provider domain.ProdukProviderDomain) (domain.ProdukProviderDomain, error)
+	// GetPartners get list all partners
+	GetPartners(ctx context.Context) ([]domain.PartnerDomain, error)
 }

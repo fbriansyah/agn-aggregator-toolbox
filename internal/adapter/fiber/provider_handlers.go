@@ -71,12 +71,16 @@ func (a *FiberAdapter) ProdukProviderIndex(c *fiber.Ctx) error {
 		return err
 	}
 
+	// all partners registered in database
+	listPartner, err := a.service.GetPartners(ctx)
+
 	return c.Render("pages/provider/index", fiber.Map{
-		"IDProvider": idProvider,
-		"PageTitle":  "Provider",
-		"Provider":   provider,
-		"Idproduk":   provider.Idproduk,
-		"Partners":   partners,
+		"IDProvider":  idProvider,
+		"PageTitle":   "Provider",
+		"Provider":    provider,
+		"Idproduk":    provider.Idproduk,
+		"Partners":    partners,
+		"ListPartner": listPartner,
 	})
 }
 

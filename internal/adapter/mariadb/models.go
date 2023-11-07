@@ -84,6 +84,21 @@ type MProdukProvider struct {
 	FeeBiller4 sql.NullInt32  `json:"fee_biller_4"`
 }
 
+type RekonIdproduk struct {
+	Idproduk     int32          `json:"idproduk"`
+	IdprodukPpob sql.NullString `json:"idproduk_ppob"`
+	Nama         sql.NullString `json:"nama"`
+}
+
+type ResponseCode struct {
+	Rcode       string         `json:"rcode"`
+	Rctype      string         `json:"rctype"`
+	RcodeClient sql.NullString `json:"rcode_client"`
+	MessageID   sql.NullString `json:"message_id"`
+	MessageEn   sql.NullString `json:"message_en"`
+	Status      sql.NullString `json:"status"`
+}
+
 type Transaksi struct {
 	Idtrx              int32          `json:"idtrx"`
 	Blth               string         `json:"blth"`
