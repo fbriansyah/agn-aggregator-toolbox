@@ -10,16 +10,11 @@ import (
 )
 
 const getPartners = `-- name: GetPartners :many
-Select idpartner, nama, alamat, telp, mode, use_saldo, status from m_partnerid limit ? offset ?
+Select idpartner, nama, alamat, telp, mode, use_saldo, status from m_partnerid
 `
 
-type GetPartnersParams struct {
-	Limit  int32 `json:"limit"`
-	Offset int32 `json:"offset"`
-}
-
-func (q *Queries) GetPartners(ctx context.Context, arg GetPartnersParams) ([]MPartnerid, error) {
-	rows, err := q.db.QueryContext(ctx, getPartners, arg.Limit, arg.Offset)
+func (q *Queries) GetPartners(ctx context.Context) ([]MPartnerid, error) {
+	rows, err := q.db.QueryContext(ctx, getPartners)
 	if err != nil {
 		return nil, err
 	}
