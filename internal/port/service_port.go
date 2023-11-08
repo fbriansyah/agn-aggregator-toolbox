@@ -35,4 +35,6 @@ type ServicePort interface {
 	UpdateProvider(ctx context.Context, provider domain.ProdukProviderDomain) (domain.ProdukProviderDomain, error)
 	// GetPartners get list all partners
 	GetPartners(ctx context.Context) ([]domain.PartnerDomain, error)
+	// GetTransaksiLogs get all transaksi_log
+	GetTransaksiLogs(ctx context.Context, transaksiLog domain.TransaksiLog) ([]domain.TransaksiLog, error)
 }
