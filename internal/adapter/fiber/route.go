@@ -20,4 +20,6 @@ func (a *FiberAdapter) router() {
 	a.app.Get("/partner-produk/edit-form", a.GetPartnerProdukEditForm)
 	a.app.Post("/partner-produk/save", a.SavePartnerProduk)
 	a.app.Post("/partner-produk/update", a.UpdatePartnerProduk)
+
+	a.app.Get("/transaksi-log", a.GetTransaksiLogs)
 }

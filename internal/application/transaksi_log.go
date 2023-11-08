@@ -4,10 +4,21 @@ import (
 	"context"
 
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application/domain"
+	"github.com/fbriansyah/agn-aggregator-toolbox/util"
 )
 
 func (s *Service) GetTransaksiLogs(ctx context.Context, transaksiLog domain.TransaksiLog) ([]domain.TransaksiLog, error) {
 	where := "1=1"
+
+	var qw util.QueryWhere
+
+	if transaksiLog.Blth != "" {
+		qw.Equal("tl.blth", transaksiLog.Blth)
+	}
+
+	if !qw.IsEmpty() {
+		where = qw.Build()
+	}
 
 	transakiLogs, err := s.db.GetTransaksiLog(ctx, where)
 	if err != nil {
