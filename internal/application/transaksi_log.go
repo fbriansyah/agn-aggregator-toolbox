@@ -16,6 +16,14 @@ func (s *Service) GetTransaksiLogs(ctx context.Context, transaksiLog domain.Tran
 		qw.Equal("tl.blth", transaksiLog.Blth)
 	}
 
+	if transaksiLog.KodeProduk != "" {
+		qw.Equal("mpp.KODE_PRODUK", transaksiLog.KodeProduk)
+	}
+
+	if transaksiLog.TglWaktu != "" {
+		qw.Date("tl.tgl_waktu", transaksiLog.TglWaktu)
+	}
+
 	if !qw.IsEmpty() {
 		where = qw.Build()
 	}

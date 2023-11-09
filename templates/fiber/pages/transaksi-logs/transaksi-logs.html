@@ -4,7 +4,11 @@
   id="product-container"
   class="mx-auto max-w-7xl mt-4 py-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200"
 >
-  <form hx-get="/get-products" hx-target="#list-product" hx-swap="outerHTML">
+  <form
+    hx-get="/transaksi-logs/search"
+    hx-target="#list-logs"
+    hx-swap="outerHTML"
+  >
     <div class="space-y-12">
       <div class="border-b border-gray-900/10 pb-12">
         <h2 class="text-base font-semibold leading-7 text-gray-900">
@@ -46,16 +50,16 @@
           </div>
           <div class="sm:col-span-3">
             <label
-              for="product"
+              for="produk"
               class="block text-sm font-medium leading-6 text-gray-900"
               >Produk</label
             >
             <select
-              id="product"
-              name="location"
+              id="produk"
+              name="produk"
               class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
             >
-              <option>Pilih Produk</option>
+              <option value="">Pilih Produk</option>
               {{range .ProdukOptions}}
               <option value="{{.Value}}" {{if .IsSelected}}selected{{end}}>
                 {{.Label}}

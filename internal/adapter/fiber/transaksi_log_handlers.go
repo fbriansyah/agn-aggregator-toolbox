@@ -35,3 +35,29 @@ func (a *FiberAdapter) GetTransaksiLogs(c *fiber.Ctx) error {
 		"ProdukOptions": productOptions,
 	})
 }
+
+func (a *FiberAdapter) SearchTransaksiLogs(c *fiber.Ctx) error {
+	kodeProduk := c.Query("produk")
+	tglWaktu := c.Query("tgl_waktu")
+	blth := c.Query("blth")
+
+	if blth == "" {
+		blth = time.Now().Format("200601")
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	logs, err := a.service.GetTransaksiLogs(ctx, domain.TransaksiLog{
+		Blth:       blth,
+		TglWaktu:   tglWaktu,
+		KodeProduk: kodeProduk,
+	})
+	if err != nil {
+		return err
+	}
+
+	return c.Render("pages/transaksi-logs/list-log", fiber.Map{
+		"Logs": logs,
+	})
+}

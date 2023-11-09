@@ -48,6 +48,10 @@ func (q *QueryWhere) Less(field string, value any) {
 	q.Wheres = append(q.Wheres, fmt.Sprintf("%s < %v", field, value))
 }
 
+func (q *QueryWhere) Date(field string, value string) {
+	q.Wheres = append(q.Wheres, fmt.Sprintf("DATE(%s) = '%s'", field, value))
+}
+
 // IsEmpty check if the query container empty or not
 func (q *QueryWhere) IsEmpty() bool {
 	return len(q.Wheres) < 1
