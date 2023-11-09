@@ -20,6 +20,7 @@ func (a *FiberAdapter) ListProduk(c *fiber.Ctx) error {
 		"PageTitle":    "Product",
 		"AddButtonUrl": "/add-product",
 		"Products":     products,
+		"PageID":       "home",
 	}, "partials/base")
 }
 
@@ -96,12 +97,10 @@ func (a *FiberAdapter) SaveProduk(c *fiber.Ctx) error {
 	}
 
 	return c.Redirect("/detail-product?kode_product=" + productDomain.KodeProduk)
-
 }
 
 // UpdateProduk recieve post form and update the product based on form data
 func (a *FiberAdapter) UpdateProduk(c *fiber.Ctx) error {
-
 	s := c.FormValue("status")
 	status, err := strconv.ParseInt(s, 10, 32)
 	if err != nil {
