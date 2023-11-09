@@ -40,6 +40,7 @@ func (a *FiberAdapter) SearchTransaksiLogs(c *fiber.Ctx) error {
 	kodeProduk := c.Query("produk")
 	tglWaktu := c.Query("tgl_waktu")
 	blth := c.Query("blth")
+	idpel := c.Query("idpel")
 
 	if blth == "" {
 		blth = time.Now().Format("200601")
@@ -52,6 +53,7 @@ func (a *FiberAdapter) SearchTransaksiLogs(c *fiber.Ctx) error {
 		Blth:       blth,
 		TglWaktu:   tglWaktu,
 		KodeProduk: kodeProduk,
+		Idpel:      idpel,
 	})
 	if err != nil {
 		return err

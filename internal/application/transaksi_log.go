@@ -24,6 +24,10 @@ func (s *Service) GetTransaksiLogs(ctx context.Context, transaksiLog domain.Tran
 		qw.Date("tl.tgl_waktu", transaksiLog.TglWaktu)
 	}
 
+	if transaksiLog.Idpel != "" {
+		qw.Like("tl.idpel", transaksiLog.Idpel)
+	}
+
 	if !qw.IsEmpty() {
 		where = qw.Build()
 	}
