@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application"
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application/domain"
 	"github.com/gofiber/fiber/v2"
 )
@@ -20,8 +21,17 @@ func (a *FiberAdapter) GetTransaksiLogs(c *fiber.Ctx) error {
 	if err != nil {
 		return err
 	}
+
+	productOptions, err := a.service.GetStoreData(application.STORE_PRODUK, "")
+	if err != nil {
+		return err
+	}
+
 	return c.Render("pages/transaksi-logs/transaksi-logs", fiber.Map{
-		"Logs": logs,
-		"BLTH": blth,
+		"Logs":          logs,
+		"BLTH":          blth,
+		"PageID":        "transaksi-logs",
+		"PageTitle":     "Transaksi Log",
+		"ProdukOptions": productOptions,
 	})
 }

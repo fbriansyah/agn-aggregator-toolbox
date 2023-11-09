@@ -21,7 +21,7 @@ func (s *Service) GetStoreData(storeName, value string) ([]map[string]any, error
 }
 
 func (s *Service) getProductStore(ctx context.Context, value string) ([]map[string]any, error) {
-	products, err := s.db.GetProducts(ctx, "")
+	products, err := s.db.GetProducts(ctx, "1=1")
 	if err != nil {
 		return []map[string]any{}, err
 	}
