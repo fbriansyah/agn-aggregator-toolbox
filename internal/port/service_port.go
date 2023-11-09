@@ -37,4 +37,7 @@ type ServicePort interface {
 	GetPartners(ctx context.Context) ([]domain.PartnerDomain, error)
 	// GetTransaksiLogs get all transaksi_log
 	GetTransaksiLogs(ctx context.Context, transaksiLog domain.TransaksiLog) ([]domain.TransaksiLog, error)
+	// GetStoreData get list option from store. We can get storeName from application.STORE_<store_name>.
+	// Options format {Label:<string>, Value: <string>, IsSelected: <boolean>}
+	GetStoreData(storeName, value string) ([]map[string]any, error)
 }
