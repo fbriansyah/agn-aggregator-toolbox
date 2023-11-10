@@ -6,6 +6,7 @@ import (
 
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application"
 	"github.com/fbriansyah/agn-aggregator-toolbox/internal/application/domain"
+	"github.com/fbriansyah/agn-aggregator-toolbox/util"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -61,5 +62,23 @@ func (a *FiberAdapter) SearchTransaksiLogs(c *fiber.Ctx) error {
 
 	return c.Render("pages/transaksi-logs/list-log", fiber.Map{
 		"Logs": logs,
+	})
+}
+
+func (a *FiberAdapter) DetailTransaksiLogs(c *fiber.Ctx) error {
+	id := c.Query("id")
+
+	idLog, err := util.StrToInt32(id)
+	if err != nil {
+		return err
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
+	defer cancel()
+
+	log, err := a.service.GetTransaksiLogByID(ctx, idLog)
+
+	return c.Render("", fiber.Map{
+		"Log": log,
 	})
 }

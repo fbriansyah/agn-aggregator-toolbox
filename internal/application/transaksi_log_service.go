@@ -46,3 +46,16 @@ func (s *Service) GetTransaksiLogs(ctx context.Context, transaksiLog domain.Tran
 
 	return logs, nil
 }
+
+func (s *Service) GetTransaksiLogByID(ctx context.Context, idTrxLog int32) (domain.TransaksiLog, error) {
+	log, err := s.db.GetTransaksiLogByID(ctx, idTrxLog)
+
+	if err != nil {
+		return domain.TransaksiLog{}, err
+	}
+
+	var logDomain domain.TransaksiLog
+	logDomain.FromModel(log)
+
+	return logDomain, nil
+}

@@ -23,4 +23,5 @@ func (a *FiberAdapter) router() {
 
 	a.app.Get("/transaksi-log", a.GetTransaksiLogs)
 	a.app.Get("/transaksi-logs/search", a.SearchTransaksiLogs)
+	a.app.Get("/transaksi-log/detail", a.DetailTransaksiLogs)
 }

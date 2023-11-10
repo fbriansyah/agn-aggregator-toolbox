@@ -40,4 +40,6 @@ type ServicePort interface {
 	// GetStoreData get list option from store. We can get storeName from application.STORE_<store_name>.
 	// Options format {Label:<string>, Value: <string>, IsSelected: <boolean>}
 	GetStoreData(storeName, value string) ([]map[string]any, error)
+	// GetTransaksiLogByID get one transaksi log by id transaksi log
+	GetTransaksiLogByID(ctx context.Context, idTrxLog int32) (domain.TransaksiLog, error)
 }

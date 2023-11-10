@@ -1,14 +1,8 @@
 {{template "partials/top" .}}
 
-<div
-  id="product-container"
-  class="mx-auto max-w-7xl mt-4 py-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200"
->
-  <form
-    hx-get="/transaksi-logs/search"
-    hx-target="#list-logs"
-    hx-swap="outerHTML"
-  >
+<div id="product-container"
+  class="mx-auto max-w-7xl mt-4 py-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200">
+  <form hx-get="/transaksi-logs/search" hx-target="#list-logs" hx-swap="outerHTML">
     <div class="space-y-12">
       <div class="border-b border-gray-900/10 pb-12">
         <h2 class="text-base font-semibold leading-7 text-gray-900">
@@ -17,48 +11,24 @@
 
         <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label
-              for="blth"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >BLTH</label
-            >
+            <label for="blth" class="block text-sm font-medium leading-6 text-gray-900">BLTH</label>
             <div class="mt-2">
-              <input
-                type="text"
-                name="blth"
-                id="blth"
-                value="{{.BLTH}}"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+              <input type="text" name="blth" id="blth" value="{{.BLTH}}"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
           </div>
 
           <div class="sm:col-span-3">
-            <label
-              for="tgl_waktu"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Tanggal Waktu</label
-            >
+            <label for="tgl_waktu" class="block text-sm font-medium leading-6 text-gray-900">Tanggal Waktu</label>
             <div class="mt-2">
-              <input
-                type="date"
-                name="tgl_waktu"
-                id="tgl_waktu"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+              <input type="date" name="tgl_waktu" id="tgl_waktu"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
           </div>
           <div class="sm:col-span-3">
-            <label
-              for="produk"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Produk</label
-            >
-            <select
-              id="produk"
-              name="produk"
-              class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            >
+            <label for="produk" class="block text-sm font-medium leading-6 text-gray-900">Produk</label>
+            <select id="produk" name="produk"
+              class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
               <option value="">Pilih Produk</option>
               {{range .ProdukOptions}}
               <option value="{{.Value}}" {{if .IsSelected}}selected{{end}}>
@@ -68,18 +38,10 @@
             </select>
           </div>
           <div class="sm:col-span-3">
-            <label
-              for="idpel"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Idpel</label
-            >
+            <label for="idpel" class="block text-sm font-medium leading-6 text-gray-900">Idpel</label>
             <div class="mt-2">
-              <input
-                type="text"
-                name="idpel"
-                id="idpel"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+              <input type="text" name="idpel" id="idpel"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
           </div>
         </div>
@@ -87,20 +49,16 @@
     </div>
 
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button
-        type="submit"
-        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      >
+      <button type="submit"
+        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         Filter
       </button>
     </div>
   </form>
 </div>
 
-<div
-  style="height: 500px; overflow-y: scroll"
-  class="mx-auto max-w-7xl mt-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200"
->
+<div style="height: 500px; overflow-y: scroll"
+  class="mx-auto max-w-7xl mt-4 px-4 sm:px-6 lg:px-8 bg-white rounded-md border border-gray-200">
   {{template "pages/transaksi-logs/list-log" .}}
 </div>
 {{template "partials/bottom" .}}

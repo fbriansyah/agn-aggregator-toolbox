@@ -65,3 +65,30 @@ func (q *Queries) GetTransaksiLog(ctx context.Context, whereQuery string) ([]mod
 	}
 	return items, nil
 }
+
+func (q *Queries) GetTransaksiLogByID(ctx context.Context, idTrxLog int32) (model.TransaksiLog, error) {
+	query := fmt.Sprintf(listTransaksiLog, fmt.Sprintf("tl.IDTRXLOG = %d", idTrxLog))
+	query += " Limit 1"
+
+	fmt.Println(query)
+
+	row := q.db.QueryRowContext(ctx, query)
+	var i model.TransaksiLog
+
+	err := row.Scan(
+		&i.Idtrxlog,
+		&i.Blth,
+		&i.TglWaktu,
+		&i.Idpartner,
+		&i.Idmerchant,
+		&i.Idproduk,
+		&i.NamaProduk,
+		&i.RequestTipe,
+		&i.Idpel,
+		&i.ProviderRequest,
+		&i.MiddlewareResponse,
+		&i.Status,
+	)
+
+	return i, err
+}

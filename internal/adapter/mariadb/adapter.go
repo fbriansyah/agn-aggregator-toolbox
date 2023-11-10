@@ -11,6 +11,7 @@ type DatabaseAdapter interface {
 	Querier
 	GetProducts(ctx context.Context, whereQuery string) ([]MProduk, error)
 	GetTransaksiLog(ctx context.Context, whereQuery string) ([]model.TransaksiLog, error)
+	GetTransaksiLogByID(ctx context.Context, idTrxLog int32) (model.TransaksiLog, error)
 }
 
 type DatabaseStore struct {
