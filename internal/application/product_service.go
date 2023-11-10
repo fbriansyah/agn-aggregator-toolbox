@@ -94,7 +94,7 @@ func (s *Service) GetProducts(ctx context.Context, produk domain.ProductDomain) 
 	where := "1=1"
 	var qw util.QueryWhere
 	if produk.KodeProduk != "" {
-		qw.Equal("KODE_PRODUK", produk.KodeProduk)
+		qw.Like("KODE_PRODUK", produk.KodeProduk)
 	}
 	if produk.NamaProduk != "" {
 		qw.Like("NAMA_PRODUK", produk.NamaProduk)
