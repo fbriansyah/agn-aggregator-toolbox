@@ -67,6 +67,7 @@ func (a *FiberAdapter) SearchTransaksiLogs(c *fiber.Ctx) error {
 
 func (a *FiberAdapter) DetailTransaksiLogs(c *fiber.Ctx) error {
 	id := c.Query("id")
+	blth := c.Query("blth")
 
 	idLog, err := util.StrToInt32(id)
 	if err != nil {
@@ -77,8 +78,15 @@ func (a *FiberAdapter) DetailTransaksiLogs(c *fiber.Ctx) error {
 	defer cancel()
 
 	log, err := a.service.GetTransaksiLogByID(ctx, idLog)
+	if err != nil {
+		return err
+	}
+	if blth == "" {
+		blth = time.Now().Format("200601")
+	}
 
-	return c.Render("", fiber.Map{
-		"Log": log,
+	return c.Render("pages/transaksi-logs/log-details", fiber.Map{
+		"Log":  log,
+		"Blth": blth,
 	})
 }
