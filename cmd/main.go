@@ -26,9 +26,7 @@ func main() {
 	dbAdapter := mariadb.NewDatabaseAdapter(db)
 
 	service := application.NewService(dbAdapter)
-	// template := template.NewTemplateAdapter()
 
-	// httpAdapter := chi.NewChiAdapter(service, template)
 	httpAdapter := fiber.NewFiberAdapter(service)
 
 	fmt.Println("Server run in http://localhost:4321")
