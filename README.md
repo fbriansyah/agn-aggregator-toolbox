@@ -2,6 +2,7 @@
 Aplikasi toolbox untuk aggregator. Aplikasi ini mengimplementasikan Hexagonal architecture agar lebih mudah dalam scaling, maintain, dan testing.
 
 ## Project Structure
+```
 .
 ├── cmd
 ├── db
@@ -25,6 +26,7 @@ Aplikasi toolbox untuk aggregator. Aplikasi ini mengimplementasikan Hexagonal ar
 │       └── partials
 ├── tmp
 └── util
+```
 
 ### Folder Legend
 1. **/cmd** Merupakan folder yang berisi package main untuk bootstrap aplikasi, seperti setting adapter dan service (contoh, database adapter).
